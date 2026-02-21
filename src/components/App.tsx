@@ -173,13 +173,27 @@ export default function App() {
                 </div>
             </section>
 
-            {/* TRUSTED BY */}
+            {/* MULTICHAIN ASSETS DISPLAY */}
             <section className="py-10 border-y border-white/5 bg-[#05050A]">
-                <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                    <p className="text-sm font-semibold text-gray-400 uppercase tracking-widest">Trusted by innovators</p>
+                <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-50 hover:opacity-100 transition-all duration-500">
+                    <p className="text-sm font-semibold text-gray-400 uppercase tracking-widest">Supported Assets</p>
                     <div className="flex items-center gap-12">
-                        <span className="font-display font-bold text-2xl tracking-tight flex items-center gap-2"><div className="w-5 h-5 rounded bg-current" /> LIMINAL</span>
-                        <span className="font-display font-bold text-2xl tracking-tight flex items-center gap-2"><div className="w-5 h-5 rounded-full border-[3px] border-current" /> INDODAX</span>
+                        <div className="flex items-center gap-3 group/asset">
+                            <span className="w-8 h-8 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center text-sm font-bold shadow-[0_0_10px_rgba(249,115,22,0.2)] group-hover/asset:shadow-[0_0_15px_rgba(249,115,22,0.4)] transition-all">₿</span>
+                            <span className="font-display font-bold text-lg tracking-tight">BITCOIN</span>
+                        </div>
+                        <div className="flex items-center gap-3 group/asset">
+                            <span className="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-sm font-bold shadow-[0_0_10px_rgba(59,130,246,0.2)] group-hover/asset:shadow-[0_0_15px_rgba(59,130,246,0.4)] transition-all">Ξ</span>
+                            <span className="font-display font-bold text-lg tracking-tight">ETH</span>
+                        </div>
+                        <div className="flex items-center gap-3 group/asset">
+                            <span className="w-8 h-8 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-sm font-bold shadow-[0_0_10px_rgba(34,197,94,0.2)] group-hover/asset:shadow-[0_0_15px_rgba(34,197,94,0.4)] transition-all">₮</span>
+                            <span className="font-display font-bold text-lg tracking-tight">USDT</span>
+                        </div>
+                        <div className="flex items-center gap-3 group/asset">
+                            <span className="w-8 h-8 rounded-full bg-oxo-purple/20 text-oxo-lightpurple flex items-center justify-center text-xs font-bold shadow-[0_0_10px_rgba(108,63,255,0.2)] group-hover/asset:shadow-[0_0_15px_rgba(108,63,255,0.4)] transition-all">IDRX</span>
+                            <span className="font-display font-bold text-lg tracking-tight">IDRX</span>
+                        </div>
                     </div>
                 </div>
             </section>
