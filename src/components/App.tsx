@@ -141,9 +141,13 @@ export default function App() {
                     {/* ─── Layout: coins ← phone → coins ─── */}
                     <div className="relative z-10 flex items-center justify-center" style={{ paddingTop: '60px', paddingBottom: '60px' }}>
 
-                        {/* LEFT coin strip — fades out toward left edge */}
-                        <div className="flex items-center gap-4 md:gap-5"
-                            style={{ maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 15%, black 35%, black 100%)', paddingRight: '28px' }}
+                        {/* LEFT coin strip — Soft edge fade */}
+                        <div className="flex items-center gap-4 md:gap-6"
+                            style={{
+                                maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 100%)',
+                                paddingRight: '40px',
+                                marginLeft: '10px'
+                            }}
                         >
                             {LEFT_COINS.map((coin, i) => (
                                 <div
@@ -154,7 +158,7 @@ export default function App() {
                                         background: 'rgba(8, 8, 18, 0.75)',
                                         backdropFilter: 'blur(14px)',
                                         border: '1px solid rgba(255,255,255,0.09)',
-                                        boxShadow: `0 0 22px ${coin.rawGlow}, inset 0 1px 0 rgba(255,255,255,0.06)`,
+                                        boxShadow: `0 0 25px ${coin.rawGlow}, inset 0 1px 0 rgba(255,255,255,0.06)`,
                                         color: coin.textColor,
                                     }}
                                 >
@@ -241,9 +245,13 @@ export default function App() {
                             </div>
                         </div>
 
-                        {/* RIGHT coin strip — fades out toward right edge */}
-                        <div className="flex items-center gap-4 md:gap-5"
-                            style={{ maskImage: 'linear-gradient(to left, transparent 0%, rgba(0,0,0,0.6) 15%, black 35%, black 100%)', paddingLeft: '28px' }}
+                        {/* RIGHT coin strip — Soft edge fade */}
+                        <div className="flex items-center gap-4 md:gap-6"
+                            style={{
+                                maskImage: 'linear-gradient(to left, transparent 0%, black 20%, black 100%)',
+                                paddingLeft: '40px',
+                                marginRight: '10px'
+                            }}
                         >
                             {RIGHT_COINS.map((coin, i) => (
                                 <div
@@ -254,7 +262,7 @@ export default function App() {
                                         background: 'rgba(8, 8, 18, 0.75)',
                                         backdropFilter: 'blur(14px)',
                                         border: '1px solid rgba(255,255,255,0.09)',
-                                        boxShadow: `0 0 22px ${coin.rawGlow}, inset 0 1px 0 rgba(255,255,255,0.06)`,
+                                        boxShadow: `0 0 25px ${coin.rawGlow}, inset 0 1px 0 rgba(255,255,255,0.06)`,
                                         color: coin.textColor,
                                     }}
                                 >
@@ -268,13 +276,6 @@ export default function App() {
                     {/* ─── Seamless dissolve into next section ─── */}
                     <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-20"
                         style={{ background: 'linear-gradient(to bottom, transparent 0%, #030308 100%)' }}
-                    />
-                    {/* Side fades — prevents content bleeding too wide */}
-                    <div className="absolute top-0 bottom-0 left-0 w-24 md:w-40 pointer-events-none z-20"
-                        style={{ background: 'linear-gradient(to right, #030308, transparent)' }}
-                    />
-                    <div className="absolute top-0 bottom-0 right-0 w-24 md:w-40 pointer-events-none z-20"
-                        style={{ background: 'linear-gradient(to left, #030308, transparent)' }}
                     />
                 </div>
             </section>
