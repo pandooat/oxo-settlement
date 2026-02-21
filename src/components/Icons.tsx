@@ -1,46 +1,183 @@
-export const ShieldIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+/**
+ * OXO Settlement — Custom Futuristic Icon System
+ * Style: Sharp, angular, glitch-tech aesthetic with layered geometry.
+ * All icons accept className prop and inherit currentColor.
+ */
+
+type IconProps = { className?: string };
+
+// ─── Shield / Security ─────────────────────────────────────────────────────
+// Hexagonal shield with inner scan-line and corner notches
+export const ShieldIcon = ({ className = "w-6 h-6" }: IconProps) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Main hex shield */}
+        <path
+            d="M12 2L4 5.5V11c0 4.418 3.314 8.193 8 9.5 4.686-1.307 8-5.082 8-9.5V5.5L12 2Z"
+            stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"
+        />
+        {/* Inner glow ring */}
+        <path
+            d="M12 4.5L6 7.25V11c0 3.09 2.31 5.74 6 6.85 3.69-1.11 6-3.76 6-6.85V7.25L12 4.5Z"
+            stroke="currentColor" strokeWidth="0.5" strokeLinejoin="round" opacity="0.4"
+        />
+        {/* Check mark - bold angular */}
+        <path
+            d="M8.5 11.5L10.5 13.5L15.5 9"
+            stroke="currentColor" strokeWidth="1.6" strokeLinecap="square" strokeLinejoin="miter"
+        />
+        {/* Corner accent left */}
+        <path d="M4 5.5L5.5 5" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity="0.6" />
+        {/* Corner accent right */}
+        <path d="M20 5.5L18.5 5" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity="0.6" />
     </svg>
 );
 
-export const SwapIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+// ─── Swap / Exchange ────────────────────────────────────────────────────────
+// Double-headed arrows with hex nodes at ends
+export const SwapIcon = ({ className = "w-6 h-6" }: IconProps) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Top arrow — right direction */}
+        <path d="M4 8H18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+        <path d="M14 4L18.5 8L14 12" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="miter" strokeLinecap="square" />
+        {/* Bottom arrow — left direction */}
+        <path d="M20 16H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+        <path d="M10 12L5.5 16L10 20" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="miter" strokeLinecap="square" />
+        {/* Node dots */}
+        <rect x="2.5" y="6.5" width="3" height="3" rx="0" stroke="currentColor" strokeWidth="0.8" opacity="0.5" />
+        <rect x="18.5" y="14.5" width="3" height="3" rx="0" stroke="currentColor" strokeWidth="0.8" opacity="0.5" />
     </svg>
 );
 
-export const LockIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+// ─── Lock / Secure ─────────────────────────────────────────────────────────
+// Futuristic angular padlock with scan notch
+export const LockIcon = ({ className = "w-6 h-6" }: IconProps) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Shackle */}
+        <path
+            d="M8 11V7a4 4 0 018 0v4"
+            stroke="currentColor" strokeWidth="1.5" strokeLinecap="square"
+        />
+        {/* Body — chamfered rect */}
+        <path
+            d="M5 11h14v9.5a.5.5 0 01-.5.5h-13a.5.5 0 01-.5-.5V11Z"
+            stroke="currentColor" strokeWidth="1.4"
+        />
+        {/* Keyhole outer */}
+        <circle cx="12" cy="15.5" r="1.8" stroke="currentColor" strokeWidth="1.2" />
+        {/* Keyhole pin */}
+        <path d="M12 17.3V19" stroke="currentColor" strokeWidth="1.4" strokeLinecap="square" />
+        {/* Corner detail */}
+        <path d="M5 13h2" stroke="currentColor" strokeWidth="0.6" opacity="0.5" strokeLinecap="round" />
+        <path d="M17 13h2" stroke="currentColor" strokeWidth="0.6" opacity="0.5" strokeLinecap="round" />
     </svg>
 );
 
-export const WalletIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+// ─── Wallet ─────────────────────────────────────────────────────────────────
+// Futuristic chip-wallet with circuit line
+export const WalletIcon = ({ className = "w-6 h-6" }: IconProps) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Main wallet body */}
+        <path
+            d="M3 7h18v12a1 1 0 01-1 1H4a1 1 0 01-1-1V7Z"
+            stroke="currentColor" strokeWidth="1.4"
+        />
+        {/* Flap top line */}
+        <path d="M3 7l2-3h14l2 3" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="miter" />
+        {/* Coin pocket */}
+        <rect x="14" y="11" width="5" height="4" rx="1" stroke="currentColor" strokeWidth="1.2" />
+        {/* Coin dot */}
+        <circle cx="16.5" cy="13" r="0.8" fill="currentColor" />
+        {/* Circuit accent */}
+        <path d="M5 11h5" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity="0.5" />
+        <path d="M5 14h4" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity="0.4" />
     </svg>
 );
 
-export const CheckIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+// ─── Check / Success ────────────────────────────────────────────────────────
+// Hexagonal success badge with angular check
+export const CheckIcon = ({ className = "w-6 h-6" }: IconProps) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Hex outer */}
+        <path
+            d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2Z"
+            stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"
+        />
+        {/* Inner hex thin */}
+        <path
+            d="M12 5l6.5 3.75v7.5L12 20l-6.5-3.75V8.75L12 5Z"
+            stroke="currentColor" strokeWidth="0.4" strokeLinejoin="round" opacity="0.3"
+        />
+        {/* Angular check */}
+        <path
+            d="M8 12l3 3 5-6"
+            stroke="currentColor" strokeWidth="1.8" strokeLinecap="square" strokeLinejoin="miter"
+        />
     </svg>
 );
 
-export const FingerprintIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+// ─── Fingerprint / ZK Proof ─────────────────────────────────────────────────
+// Stylized radial scan with broken arcs = ZK-tech feel
+export const FingerprintIcon = ({ className = "w-6 h-6" }: IconProps) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Outer arc */}
+        <path
+            d="M4.5 11.5a7.5 7.5 0 0115 0"
+            stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.9"
+        />
+        {/* Outer arc bottom — broken */}
+        <path
+            d="M4.5 13c.5 3 2.5 5.5 5 7"
+            stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.5"
+        />
+        <path
+            d="M14.5 20c2.5-1.5 4.4-4 5-7"
+            stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.5"
+        />
+        {/* Mid arc */}
+        <path
+            d="M7.5 11.5a4.5 4.5 0 019 0"
+            stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"
+        />
+        <path
+            d="M7.5 13c.4 2 1.5 3.5 2.5 4.5"
+            stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.6"
+        />
+        <path
+            d="M14 18c1.2-1 2.1-2.5 2.5-4.5"
+            stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.6"
+        />
+        {/* Inner arc */}
+        <path
+            d="M10.5 11.5a1.5 1.5 0 013 0v4"
+            stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"
+        />
+        {/* Center dot */}
+        <circle cx="12" cy="11.5" r="1" fill="currentColor" opacity="0.9" />
+        {/* Top notch */}
+        <path d="M11 5.5h2" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.7" />
+        <path d="M8.5 6.5l.8.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5" />
+        <path d="M15.5 6.5l-.8.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5" />
     </svg>
 );
 
-export const CloseIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+// ─── Close / X ──────────────────────────────────────────────────────────────
+// Fractured X with corner bracket styling
+export const CloseIcon = ({ className = "w-6 h-6" }: IconProps) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Corner brackets */}
+        <path d="M4 6V4h2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="square" opacity="0.4" />
+        <path d="M18 4h2v2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="square" opacity="0.4" />
+        <path d="M4 18v2h2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="square" opacity="0.4" />
+        <path d="M18 20h2v-2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="square" opacity="0.4" />
+        {/* X lines */}
+        <path d="M7 7l10 10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M17 7L7 17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
 );
 
-export const GoogleIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
+// ─── Google ──────────────────────────────────────────────────────────────────
+// Keep real Google branding (colored)
+export const GoogleIcon = ({ className = "w-5 h-5" }: IconProps) => (
     <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
         <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
@@ -49,8 +186,109 @@ export const GoogleIcon = ({ className = "w-5 h-5" }: { className?: string }) =>
     </svg>
 );
 
-export const ArrowUpRight = ({ className = "w-5 h-5" }: { className?: string }) => (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+// ─── Arrow Up Right / Navigate ──────────────────────────────────────────────
+// Techy arrow with tail notch
+export const ArrowUpRight = ({ className = "w-5 h-5" }: IconProps) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Shaft */}
+        <path d="M5 19L18 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="square" />
+        {/* Head */}
+        <path d="M9 6h9v9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="square" strokeLinejoin="miter" />
+        {/* Tail notch */}
+        <path d="M5 15v4h4" stroke="currentColor" strokeWidth="0.8" strokeLinecap="square" opacity="0.4" />
+    </svg>
+);
+
+// ─── Risk / Scan ─────────────────────────────────────────────────────────────
+// Animated radar scan ring — used in risk screening context
+export const ScanIcon = ({ className = "w-6 h-6" }: IconProps) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Outer ring broken */}
+        <path d="M12 3a9 9 0 019 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.9" />
+        <path d="M21 12a9 9 0 01-9 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.5" />
+        <path d="M12 21a9 9 0 01-9-9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.3" />
+        <path d="M3 12a9 9 0 019-9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.7" />
+        {/* Mid ring */}
+        <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="1" opacity="0.4" strokeDasharray="2 2" />
+        {/* Target cross */}
+        <path d="M12 9v2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        <path d="M12 13v2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        <path d="M9 12h2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        <path d="M13 12h2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        {/* Center dot */}
+        <circle cx="12" cy="12" r="1.2" fill="currentColor" />
+    </svg>
+);
+
+// ─── ZK Proof / Certificate ──────────────────────────────────────────────────
+// Angular doc with circuit nodes at corners
+export const ZKProofIcon = ({ className = "w-6 h-6" }: IconProps) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Page with folded corner */}
+        <path
+            d="M5 2h10l4 4v16H5V2Z"
+            stroke="currentColor" strokeWidth="1.4" strokeLinejoin="miter"
+        />
+        {/* Fold crease */}
+        <path d="M15 2l4 4h-4V2Z" stroke="currentColor" strokeWidth="1" strokeLinejoin="miter" opacity="0.5" />
+        {/* Lines — data */}
+        <path d="M8 9h8" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.7" />
+        <path d="M8 12h8" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5" />
+        <path d="M8 15h5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.4" />
+        {/* Corner nodes */}
+        <rect x="4" y="1" width="2.5" height="2.5" fill="currentColor" opacity="0.3" />
+        <rect x="17.5" y="18.5" width="2.5" height="2.5" fill="currentColor" opacity="0.3" />
+        {/* Verified tick at bottom */}
+        <path d="M9 17l1.5 1.5L15 14.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+// ─── Chain / Network ─────────────────────────────────────────────────────────
+// Circuit-board style chain of nodes
+export const ChainIcon = ({ className = "w-6 h-6" }: IconProps) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Nodes */}
+        <rect x="1.5" y="9.5" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.3" />
+        <rect x="9.5" y="9.5" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.3" />
+        <rect x="17.5" y="9.5" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.3" />
+        {/* Connectors */}
+        <path d="M6.5 12h3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="square" />
+        <path d="M14.5 12h3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="square" />
+        {/* Top pins */}
+        <path d="M4 9.5V7" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5" />
+        <path d="M12 9.5V7" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5" />
+        <path d="M20 9.5V7" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5" />
+        {/* Bottom pins */}
+        <path d="M4 14.5V17" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5" />
+        <path d="M12 14.5V17" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5" />
+        <path d="M20 14.5V17" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.5" />
+    </svg>
+);
+
+// ─── Dashboard / Live Monitor ─────────────────────────────────────────────────
+// HUD-style dash with bar chart + live dot
+export const DashboardIcon = ({ className = "w-6 h-6" }: IconProps) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Screen border with notches */}
+        <path
+            d="M3 5h18v14H3V5Z"
+            stroke="currentColor" strokeWidth="1.4"
+        />
+        {/* Corner accents */}
+        <path d="M3 5h3" stroke="currentColor" strokeWidth="2" strokeLinecap="square" opacity="0.7" />
+        <path d="M3 5v3" stroke="currentColor" strokeWidth="2" strokeLinecap="square" opacity="0.7" />
+        <path d="M21 5h-3" stroke="currentColor" strokeWidth="2" strokeLinecap="square" opacity="0.7" />
+        <path d="M21 5v3" stroke="currentColor" strokeWidth="2" strokeLinecap="square" opacity="0.7" />
+        <path d="M3 19h3" stroke="currentColor" strokeWidth="2" strokeLinecap="square" opacity="0.7" />
+        <path d="M3 19v-3" stroke="currentColor" strokeWidth="2" strokeLinecap="square" opacity="0.7" />
+        <path d="M21 19h-3" stroke="currentColor" strokeWidth="2" strokeLinecap="square" opacity="0.7" />
+        <path d="M21 19v-3" stroke="currentColor" strokeWidth="2" strokeLinecap="square" opacity="0.7" />
+        {/* Bar chart */}
+        <rect x="6" y="14" width="2" height="3" fill="currentColor" opacity="0.4" />
+        <rect x="9" y="11" width="2" height="6" fill="currentColor" opacity="0.6" />
+        <rect x="12" y="9" width="2" height="8" fill="currentColor" opacity="0.8" />
+        <rect x="15" y="12" width="2" height="5" fill="currentColor" opacity="0.5" />
+        {/* Live dot */}
+        <circle cx="18" cy="9" r="1.2" fill="currentColor" opacity="0.9" />
     </svg>
 );

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { dict, type Lang } from '../lib/dict';
 import {
-    ShieldIcon, LockIcon, FingerprintIcon,
+    ShieldIcon, LockIcon, ScanIcon, ZKProofIcon, ChainIcon, DashboardIcon,
     CloseIcon, GoogleIcon, ArrowUpRight,
 } from './Icons';
 import { SettlementForm } from './SettlementForm';
@@ -51,6 +51,15 @@ export default function App() {
     };
     const toggleLang = () => setLang(l => l === 'en' ? 'id' : 'en');
 
+    // Map flow icons using new futuristic icon components
+    const FlowIcons = [
+        <ChainIcon className="w-7 h-7" />,
+        <ScanIcon className="w-7 h-7" />,
+        <ArrowUpRight className="w-7 h-7" />,
+        <LockIcon className="w-7 h-7" />,
+        <ZKProofIcon className="w-7 h-7" />,
+    ];
+
     const flowSteps = [
         { title: t.flow_1_title, desc: t.flow_1_desc, micro: t.flow_1_micro },
         { title: t.flow_2_title, desc: t.flow_2_desc, micro: t.flow_2_micro },
@@ -59,14 +68,15 @@ export default function App() {
         { title: t.flow_5_title, desc: t.flow_5_desc, micro: t.flow_5_micro },
     ];
 
+    // Feature icon components — each paired with title/desc from dict
     const features = [
-        { icon: t.feat_1_icon, title: t.feat_1_title, desc: t.feat_1_desc },
-        { icon: t.feat_2_icon, title: t.feat_2_title, desc: t.feat_2_desc },
-        { icon: t.feat_3_icon, title: t.feat_3_title, desc: t.feat_3_desc },
-        { icon: t.feat_4_icon, title: t.feat_4_title, desc: t.feat_4_desc },
-        { icon: t.feat_5_icon, title: t.feat_5_title, desc: t.feat_5_desc },
-        { icon: t.feat_6_icon, title: t.feat_6_title, desc: t.feat_6_desc },
-        { icon: t.feat_7_icon, title: t.feat_7_title, desc: t.feat_7_desc },
+        { icon: <ScanIcon className="w-6 h-6" />, title: t.feat_1_title, desc: t.feat_1_desc },
+        { icon: <ArrowUpRight className="w-6 h-6" />, title: t.feat_2_title, desc: t.feat_2_desc },
+        { icon: <ShieldIcon className="w-6 h-6" />, title: t.feat_3_title, desc: t.feat_3_desc },
+        { icon: <ZKProofIcon className="w-6 h-6" />, title: t.feat_4_title, desc: t.feat_4_desc },
+        { icon: <DashboardIcon className="w-6 h-6" />, title: t.feat_5_title, desc: t.feat_5_desc },
+        { icon: <ChainIcon className="w-6 h-6" />, title: t.feat_6_title, desc: t.feat_6_desc },
+        { icon: <LockIcon className="w-6 h-6" />, title: t.feat_7_title, desc: t.feat_7_desc },
     ];
 
     const faqs = [
@@ -291,7 +301,7 @@ export default function App() {
                                 <div className="flex flex-col md:flex-row items-start gap-6">
                                     <div className="flex-shrink-0 w-20 h-20 rounded-2xl bg-[#05050A] border border-white/10 flex flex-col items-center justify-center gap-1 group-hover:border-oxo-purple transition-colors relative overflow-hidden">
                                         <div className="absolute inset-0 bg-oxo-purple/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                        <span className="text-2xl">{FLOW_ICONS[i]}</span>
+                                        <span className="text-white/80 group-hover:text-white transition-colors">{FlowIcons[i]}</span>
                                         <span className="text-[10px] font-bold text-gray-500 group-hover:text-oxo-lightpurple transition-colors tracking-widest">0{i + 1}</span>
                                     </div>
                                     <div className="flex-1">
@@ -324,7 +334,7 @@ export default function App() {
                         {features.map((f, i) => (
                             <div key={i} className="glass-panel p-7 rounded-2xl border-white/5 group hover:border-oxo-purple/40 transition-colors reveal" style={{ transitionDelay: `${i * 60}ms` }}>
                                 <div className="bento-glow" />
-                                <div className="text-3xl mb-4 group-hover:scale-110 transition-transform inline-block">{f.icon}</div>
+                                <div className="w-11 h-11 mb-5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-oxo-lightpurple group-hover:bg-oxo-purple/20 group-hover:border-oxo-purple/60 group-hover:text-white transition-all duration-200 group-hover:scale-110">{f.icon}</div>
                                 <h4 className="text-base font-display font-bold text-white mb-2">{f.title}</h4>
                                 <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
                             </div>
@@ -359,7 +369,7 @@ export default function App() {
                         <div className="glass-panel p-10 md:p-12 rounded-[2.5rem] relative overflow-hidden group reveal border-white/5 hover:border-red-500/20 transition-colors">
                             <div className="bento-glow" />
                             <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 text-red-400 group-hover:bg-red-500/20 transition-colors">
-                                <ShieldIcon className="w-8 h-8" />
+                                <ScanIcon className="w-8 h-8" />
                             </div>
                             <h3 className="text-2xl font-display font-bold mb-4 text-white">{t.comp_1_title}</h3>
                             <p className="text-gray-400 text-lg leading-relaxed">{t.comp_1_desc}</p>
@@ -367,7 +377,7 @@ export default function App() {
                         <div className="glass-panel p-10 md:p-12 rounded-[2.5rem] relative overflow-hidden group reveal border-white/5 hover:border-oxo-neon/20 transition-colors" style={{ transitionDelay: '100ms' }}>
                             <div className="bento-glow" />
                             <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 text-oxo-neon group-hover:bg-oxo-neon/20 transition-colors">
-                                <FingerprintIcon className="w-8 h-8" />
+                                <ZKProofIcon className="w-8 h-8" />
                             </div>
                             <h3 className="text-2xl font-display font-bold mb-4 text-white">{t.comp_2_title}</h3>
                             <p className="text-gray-400 text-lg leading-relaxed">{t.comp_2_desc}</p>

@@ -298,5 +298,5 @@ export const dict = {
     },
 } as const;
 
-export type Dict = typeof dict.en;
+export type Dict = typeof dict.en | typeof dict.id;
 export type Lang = keyof typeof dict;
