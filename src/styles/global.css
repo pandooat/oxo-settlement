@@ -13,7 +13,7 @@ body {
 
 /* Ultra-dark Glassmorphism */
 .glass-panel {
-  background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -33,7 +33,7 @@ body {
   transform: translateX(-50%);
   width: 80%;
   height: 1px;
-  background: radial-gradient(circle, rgba(108,63,255,0.8) 0%, rgba(108,63,255,0) 70%);
+  background: radial-gradient(circle, rgba(108, 63, 255, 0.8) 0%, rgba(108, 63, 255, 0) 70%);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -55,10 +55,22 @@ body {
 }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #030308; }
-::-webkit-scrollbar-thumb { background: #332166; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #6C3FFF; }
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030308;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #332166;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6C3FFF;
+}
 
 .spotlight {
   position: absolute;
@@ -70,7 +82,7 @@ body {
 
 /* Loading Spinner */
 .spinner {
-  border: 3px solid rgba(255,255,255,0.1);
+  border: 3px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   border-top: 3px solid white;
   width: 20px;
@@ -79,6 +91,39 @@ body {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hero dot-grid background */
+.hero-grid {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Floating coin animation */
+@keyframes coinFloat {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.coin-float {
+  animation: coinFloat 3s ease-in-out infinite;
+}
+
+/* Radial gradient utility */
+.bg-gradient-radial {
+  background: radial-gradient(ellipse at center, var(--tw-gradient-stops));
 }

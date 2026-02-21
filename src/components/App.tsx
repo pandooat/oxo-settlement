@@ -20,6 +20,21 @@ const useScrollReveal = () => {
     }, []);
 };
 
+// Coin data for the hero visual
+const LEFT_COINS = [
+    { symbol: 'Ξ', label: 'ETH', color: 'bg-blue-500/20 text-blue-400', glow: 'shadow-[0_0_20px_rgba(59,130,246,0.3)]' },
+    { symbol: '₿', label: 'BTC', color: 'bg-orange-500/20 text-orange-400', glow: 'shadow-[0_0_20px_rgba(249,115,22,0.3)]' },
+    { symbol: '₮', label: 'USDT', color: 'bg-green-500/20 text-green-400', glow: 'shadow-[0_0_20px_rgba(34,197,94,0.3)]' },
+    { symbol: '◎', label: 'SOL', color: 'bg-purple-400/20 text-purple-300', glow: 'shadow-[0_0_20px_rgba(167,139,250,0.3)]' },
+];
+
+const RIGHT_COINS = [
+    { symbol: '₿', label: 'BTC', color: 'bg-orange-500/20 text-orange-400', glow: 'shadow-[0_0_20px_rgba(249,115,22,0.3)]' },
+    { symbol: 'Ξ', label: 'ETH', color: 'bg-blue-500/20 text-blue-400', glow: 'shadow-[0_0_20px_rgba(59,130,246,0.3)]' },
+    { symbol: '⬡', label: 'BNB', color: 'bg-yellow-500/20 text-yellow-400', glow: 'shadow-[0_0_20px_rgba(234,179,8,0.3)]' },
+    { symbol: '₮', label: 'USDT', color: 'bg-green-500/20 text-green-400', glow: 'shadow-[0_0_20px_rgba(34,197,94,0.3)]' },
+];
+
 export default function App() {
     const [lang, setLang] = useState<Lang>('en');
     const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -90,90 +105,89 @@ export default function App() {
                     </div>
                 </div>
 
-                {/* DASHBOARD MOCKUP */}
-                <div className="w-full max-w-6xl mx-auto mt-20 relative reveal active">
-                    <div className="absolute inset-0 bg-oxo-purple/20 blur-[100px] rounded-[3rem] z-0 pointer-events-none transform scale-90" />
-                    <div className="relative z-10 glass-panel rounded-2xl md:rounded-[2.5rem] p-2 md:p-4 border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)]">
-                        <div className="bg-[#0A0A12] rounded-xl md:rounded-[2rem] overflow-hidden border border-white/5 flex flex-col md:flex-row h-[450px] md:h-[650px]">
-                            {/* Sidebar */}
-                            <div className="hidden md:flex w-64 border-r border-white/5 bg-[#05050A] p-6 flex-col gap-6">
-                                <div className="flex items-center gap-3 mb-8">
-                                    <div className="w-8 h-8 rounded-lg bg-oxo-purple flex items-center justify-center font-bold text-white text-xs">O</div>
-                                    <span className="font-display font-bold text-lg">OXO.</span>
+                {/* HERO VISUAL — Phone + Coin Orbit */}
+                <div className="w-full max-w-5xl mx-auto mt-20 relative reveal active select-none overflow-hidden rounded-3xl">
+                    {/* Dark grid background */}
+                    <div className="absolute inset-0 hero-grid opacity-20 pointer-events-none" />
+                    {/* Outer glow */}
+                    <div className="absolute inset-0 bg-gradient-radial from-oxo-purple/20 via-transparent to-transparent pointer-events-none" />
+
+                    {/* Purple energy beam line */}
+                    <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 pointer-events-none z-0">
+                        <div className="w-full h-px bg-gradient-to-r from-transparent via-oxo-purple to-transparent opacity-80" />
+                        <div className="absolute inset-0 w-full h-24 -translate-y-1/2 bg-oxo-purple/15 blur-3xl" />
+                    </div>
+
+                    {/* Coin row + phone layout */}
+                    <div className="relative z-10 flex items-center justify-between py-20 px-4 md:px-10">
+
+                        {/* Left coins */}
+                        <div className="flex items-center gap-3 md:gap-5">
+                            {LEFT_COINS.map((coin, i) => (
+                                <div
+                                    key={coin.label + '_l'}
+                                    className={`coin-float flex flex-col items-center justify-center w-14 h-14 md:w-18 md:h-18 rounded-full border border-white/15 bg-[#0A0A12]/90 ${coin.color} ${coin.glow} hover:scale-110 transition-all duration-300`}
+                                    style={{ animationDelay: `${i * 0.5}s` }}
+                                >
+                                    <span className="text-lg md:text-xl font-bold leading-none">{coin.symbol}</span>
+                                    <span className="text-[9px] md:text-[10px] font-semibold mt-0.5 opacity-60">{coin.label}</span>
                                 </div>
-                                <div className="space-y-2">
-                                    <div className="px-4 py-2.5 rounded-lg bg-oxo-purple/10 text-oxo-lightpurple font-medium text-sm flex items-center gap-3"><ShieldIcon className="w-4 h-4" /> Live Pipeline</div>
-                                    <div className="px-4 py-2.5 rounded-lg text-gray-500 font-medium text-sm flex items-center gap-3"><LockIcon className="w-4 h-4" /> Risk Quarantine</div>
-                                    <div className="px-4 py-2.5 rounded-lg text-gray-500 font-medium text-sm flex items-center gap-3"><SwapIcon className="w-4 h-4" /> Routing Engine</div>
-                                    <div className="px-4 py-2.5 rounded-lg text-gray-500 font-medium text-sm flex items-center gap-3"><FingerprintIcon className="w-4 h-4" /> ZK Reports</div>
-                                </div>
-                            </div>
-                            {/* Main Content */}
-                            <div className="flex-1 p-6 md:p-8 flex flex-col gap-6">
-                                <div className="flex justify-between items-center">
-                                    <div>
-                                        <h3 className="text-2xl font-display font-bold">Settlement Engine</h3>
-                                        <p className="text-gray-500 text-sm">Real-time risk screening & auto-routing pipeline.</p>
+                            ))}
+                        </div>
+
+                        {/* Center — OXO Phone Mockup */}
+                        <div className="flex-shrink-0 relative mx-2 md:mx-6">
+                            {/* Big glow orb behind phone */}
+                            <div className="absolute inset-0 scale-150 bg-oxo-purple/40 blur-[80px] rounded-full pointer-events-none" />
+                            {/* Phone frame */}
+                            <div className="relative w-32 h-60 md:w-44 md:h-80 rounded-[2.5rem] bg-gradient-to-b from-[#1a1030] to-[#030308] border-2 border-white/20 shadow-[0_0_80px_rgba(108,63,255,0.6),inset_0_1px_0_rgba(255,255,255,0.1)] overflow-hidden flex flex-col items-center">
+                                {/* Notch */}
+                                <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-14 h-3.5 bg-[#050510] rounded-full border border-white/10 z-10" />
+                                {/* Screen content */}
+                                <div className="flex flex-col items-center justify-center gap-2 mt-10 w-full px-4">
+                                    {/* App icon */}
+                                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-oxo-purple flex items-center justify-center shadow-[0_0_30px_rgba(108,63,255,0.9)]">
+                                        <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M13 3L4 14h7l-1 7 9-11h-7l1-7z" />
+                                        </svg>
                                     </div>
-                                    <span className="px-3 py-1 bg-green-500/10 text-green-400 text-xs font-bold rounded-full border border-green-500/20 flex items-center gap-2">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-ping" /> Live Ops
-                                    </span>
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div className="bg-white/5 border border-white/5 rounded-xl p-4 md:p-5 flex flex-col justify-center">
-                                        <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-2">Total Settled (24h)</p>
-                                        <p className="text-2xl md:text-3xl font-display font-bold text-white">$1.24M <span className="text-xs text-green-400 ml-2 font-sans font-medium">↑ 12%</span></p>
-                                    </div>
-                                    <div className="bg-red-500/5 border border-red-500/10 rounded-xl p-4 md:p-5 flex flex-col justify-center relative overflow-hidden">
-                                        <div className="absolute top-0 right-0 w-20 h-20 bg-red-500/10 blur-2xl" />
-                                        <p className="text-red-400/80 text-xs font-bold uppercase tracking-wider mb-2 relative z-10">In Quarantine</p>
-                                        <p className="text-2xl md:text-3xl font-display font-bold text-red-400 relative z-10">2.5 BTC</p>
-                                    </div>
-                                    <div className="bg-oxo-purple/5 border border-oxo-purple/10 rounded-xl p-4 md:p-5 flex flex-col justify-center relative overflow-hidden">
-                                        <div className="absolute bottom-0 right-0 w-20 h-20 bg-oxo-purple/20 blur-2xl" />
-                                        <p className="text-oxo-lightpurple text-xs font-bold uppercase tracking-wider mb-2 relative z-10">Clean USDT Balance</p>
-                                        <p className="text-2xl md:text-3xl font-display font-bold text-oxo-neon relative z-10">162,450 ₮</p>
+                                    <span className="text-white font-display font-bold text-xs md:text-sm tracking-widest">OXO.</span>
+                                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/20 border border-green-500/30">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-ping" />
+                                        <span className="text-[9px] md:text-[10px] text-green-400 font-bold tracking-wider">LIVE</span>
                                     </div>
                                 </div>
-                                <div className="flex-1 bg-[#05050A] border border-white/5 rounded-xl overflow-hidden flex flex-col mt-2">
-                                    <div className="hidden md:grid grid-cols-4 gap-4 p-4 border-b border-white/5 text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-white/5">
-                                        <div>Incoming Asset</div><div>AML Risk Score</div><div>Execution Route</div><div>Settlement Status</div>
-                                    </div>
-                                    <div className="flex-1 p-3 space-y-2">
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 p-3 md:p-4 rounded-lg bg-white/5 items-center border border-white/10">
-                                            <div className="flex items-center gap-3 font-display font-bold text-sm text-white">
-                                                <span className="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-sm">Ξ</span> 50.0 ETH
-                                            </div>
-                                            <div><span className="px-2.5 py-1 rounded-md bg-green-500/10 text-green-400 border border-green-500/20 text-xs font-semibold">Low (Score: 12)</span></div>
-                                            <div className="hidden md:block text-xs text-gray-400 font-mono bg-black/40 px-2 py-1 rounded w-max">DEX Aggregator</div>
-                                            <div><span className="px-3 py-1.5 rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 text-xs font-bold flex items-center gap-2 w-max"><span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" /> Swapping...</span></div>
-                                        </div>
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 p-3 md:p-4 rounded-lg bg-red-500/5 items-center border border-red-500/20 relative overflow-hidden">
-                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-red-500/5 pointer-events-none" />
-                                            <div className="flex items-center gap-3 font-display font-bold text-sm text-white">
-                                                <span className="w-8 h-8 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center text-sm">₿</span> 2.50 BTC
-                                            </div>
-                                            <div><span className="px-2.5 py-1 rounded-md bg-red-500/20 text-red-400 border border-red-500/30 text-xs font-semibold flex items-center gap-1.5 w-max"><ShieldIcon className="w-3 h-3" /> High (Flagged)</span></div>
-                                            <div className="hidden md:block text-xs text-red-400/50 font-mono bg-red-900/20 px-2 py-1 rounded w-max">Execution Halted</div>
-                                            <div><span className="px-3 py-1.5 rounded-full bg-red-500/10 text-red-400 border border-red-500/20 text-xs font-bold w-max block">Quarantined</span></div>
-                                        </div>
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 p-3 md:p-4 rounded-lg items-center border border-transparent hover:bg-white/5 transition-colors">
-                                            <div className="flex items-center gap-3 font-display font-bold text-sm text-white">
-                                                <span className="w-8 h-8 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center text-sm">₿</span> 0.85 BTC
-                                            </div>
-                                            <div><span className="px-2.5 py-1 rounded-md bg-green-500/10 text-green-400 border border-green-500/20 text-xs font-semibold">Low (Score: 05)</span></div>
-                                            <div className="hidden md:block text-xs text-gray-400 font-mono bg-black/40 px-2 py-1 rounded w-max">Thorchain → USDT</div>
-                                            <div><span className="px-3 py-1.5 rounded-full bg-oxo-purple/20 text-oxo-lightpurple border border-oxo-purple/30 text-xs font-bold w-max flex items-center gap-1.5"><CheckIcon className="w-3.5 h-3.5" /> Settled</span></div>
-                                        </div>
-                                    </div>
+                                {/* Mini bar chart */}
+                                <div className="absolute bottom-5 md:bottom-8 flex items-end gap-1 h-8 md:h-10 px-4">
+                                    {[4, 7, 5, 9, 6, 8, 10, 7, 5, 9].map((h, i) => (
+                                        <div
+                                            key={i}
+                                            className="w-1 md:w-1.5 rounded-sm bg-oxo-purple/70 animate-pulse"
+                                            style={{ height: `${h * 3}px`, animationDelay: `${i * 0.15}s` }}
+                                        />
+                                    ))}
                                 </div>
                             </div>
+                        </div>
+
+                        {/* Right coins */}
+                        <div className="flex items-center gap-3 md:gap-5">
+                            {RIGHT_COINS.map((coin, i) => (
+                                <div
+                                    key={coin.label + '_r' + i}
+                                    className={`coin-float flex flex-col items-center justify-center w-14 h-14 md:w-18 md:h-18 rounded-full border border-white/15 bg-[#0A0A12]/90 ${coin.color} ${coin.glow} hover:scale-110 transition-all duration-300`}
+                                    style={{ animationDelay: `${(i + 4) * 0.5}s` }}
+                                >
+                                    <span className="text-lg md:text-xl font-bold leading-none">{coin.symbol}</span>
+                                    <span className="text-[9px] md:text-[10px] font-semibold mt-0.5 opacity-60">{coin.label}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* MULTICHAIN ASSETS DISPLAY */}
+            {/* SUPPORTED ASSETS */}
             <section className="py-10 border-y border-white/5 bg-[#05050A]">
                 <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-50 hover:opacity-100 transition-all duration-500">
                     <p className="text-sm font-semibold text-gray-400 uppercase tracking-widest">Supported Assets</p>
@@ -394,7 +408,7 @@ export default function App() {
             <section id="compliance" className="py-32 px-6 relative z-10">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-16 reveal">
-                        <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-gray-300 text-xs font-semibold tracking-widest uppercase mb-6">Security & Trust</div>
+                        <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-gray-300 text-xs font-semibold tracking-widest uppercase mb-6">Security &amp; Trust</div>
                         <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">{t.comp_title}</h2>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
