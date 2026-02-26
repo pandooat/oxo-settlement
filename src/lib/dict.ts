@@ -3,6 +3,10 @@ export const dict = {
         // Nav
         nav_lang: "EN | ID",
         nav_login: "Login",
+        nav_home: "Home",
+        nav_compliance: "Compliance",
+        nav_about: "About",
+        nav_contact: "Contact",
 
         // Auth modal
         login_title: "Dashboard Login",
@@ -145,6 +149,10 @@ export const dict = {
         // Nav
         nav_lang: "ID | EN",
         nav_login: "Masuk",
+        nav_home: "Beranda",
+        nav_compliance: "Kepatuhan",
+        nav_about: "Tentang",
+        nav_contact: "Kontak",
 
         // Auth modal
         login_title: "Masuk Dashboard",
