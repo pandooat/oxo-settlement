@@ -142,90 +142,13 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                         </div>
 
                         {/* ── HERO VISUAL ── */}
-                        <div className="relative w-full mt-12 reveal active select-none" style={{ minHeight: '380px' }}>
-                            {/* Atmosphere */}
-                            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] rounded-full pointer-events-none"
-                                style={{ background: 'radial-gradient(ellipse at center, rgba(108,63,255,0.22) 0%, rgba(108,63,255,0.06) 50%, transparent 70%)', filter: 'blur(40px)' }}
+                        <div className="relative w-full mt-[4.5rem] reveal active select-none flex justify-center px-4" style={{ minHeight: '380px' }}>
+                            {/* Atmosphere gradient behind image */}
+                            <div className="absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full pointer-events-none"
+                                style={{ background: 'radial-gradient(ellipse at center, rgba(108,63,255,0.15) 0%, transparent 70%)', filter: 'blur(50px)' }}
                             />
-                            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full pointer-events-none"
-                                style={{ background: 'radial-gradient(ellipse at center, rgba(108,63,255,0.5) 0%, transparent 70%)', filter: 'blur(50px)' }}
-                            />
-                            <div className="absolute inset-0 hero-grid pointer-events-none opacity-25"
-                                style={{ maskImage: 'radial-gradient(ellipse 70% 90% at 50% 50%, black 30%, transparent 100%)' }}
-                            />
-                            {/* Lux beam */}
-                            <div className="absolute left-0 right-0 pointer-events-none" style={{ top: '50%', transform: 'translateY(-50%)' }}>
-                                <div className="w-full h-px" style={{ background: 'linear-gradient(to right, transparent 0%, rgba(108,63,255,0.7) 35%, rgba(180,140,255,0.9) 50%, rgba(108,63,255,0.7) 65%, transparent 100%)' }} />
-                                <div className="absolute inset-0 w-full" style={{ height: '100px', marginTop: '-50px', background: 'linear-gradient(to bottom, transparent, rgba(108,63,255,0.12) 50%, transparent)', filter: 'blur(8px)' }} />
-                            </div>
 
-                            {/* Coins + phone */}
-                            <div className="relative z-10 flex items-center justify-center" style={{ paddingTop: '60px', paddingBottom: '60px' }}>
-
-                                {/* LEFT coins */}
-                                <div className="flex items-center gap-4 md:gap-6"
-                                    style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 100%)', paddingRight: '40px', marginLeft: '10px' }}
-                                >
-                                    {LEFT_COINS.map((coin, i) => (
-                                        <div key={coin.label + '_l'}
-                                            className="coin-float flex-shrink-0 flex flex-col items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full hover:scale-110 transition-transform duration-300 cursor-default"
-                                            style={{ animationDelay: `${i * 0.55}s`, background: 'rgba(8,8,18,0.75)', backdropFilter: 'blur(14px)', border: '1px solid rgba(255,255,255,0.09)', boxShadow: `0 0 25px ${coin.rawGlow}, inset 0 1px 0 rgba(255,255,255,0.06)`, color: coin.textColor }}
-                                        >
-                                            <span className="text-lg md:text-xl font-bold leading-none">{coin.symbol}</span>
-                                            <span className="text-[9px] font-semibold mt-0.5" style={{ opacity: 0.55 }}>{coin.label}</span>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {/* CENTER phone */}
-                                <div className="flex-shrink-0 relative z-20">
-                                    <div className="absolute inset-0 rounded-[3rem] pointer-events-none"
-                                        style={{ transform: 'scale(1.25)', background: 'radial-gradient(ellipse at 50% 40%, rgba(108,63,255,0.5) 0%, transparent 70%)', filter: 'blur(30px)' }}
-                                    />
-                                    <div className="relative w-36 h-[260px] md:w-48 md:h-[340px] rounded-[2.8rem] overflow-hidden flex flex-col items-center"
-                                        style={{ background: 'linear-gradient(155deg, #1e1245 0%, #0a0618 55%, #030308 100%)', border: '1.5px solid rgba(255,255,255,0.12)', boxShadow: '0 0 0 1px rgba(255,255,255,0.05), 0 0 60px rgba(108,63,255,0.6), 0 0 120px rgba(108,63,255,0.25), 0 40px 80px rgba(0,0,0,0.8)' }}
-                                    >
-                                        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.055) 0%, transparent 50%)' }} />
-                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-28 rounded-full pointer-events-none" style={{ background: 'rgba(108,63,255,0.25)', filter: 'blur(30px)' }} />
-                                        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10" style={{ width: '64px', height: '14px', background: '#04030c', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.08)' }} />
-                                        <div className="flex flex-col items-center gap-2 mt-12 md:mt-14 relative z-10">
-                                            <div className="flex items-center justify-center rounded-[18px] w-12 h-12 md:w-14 md:h-14"
-                                                style={{ background: '#6C3FFF', boxShadow: '0 0 30px rgba(108,63,255,1), 0 0 60px rgba(108,63,255,0.5)' }}
-                                            >
-                                                <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M13 3L4 14h7l-1 7 9-11h-7l1-7z" /></svg>
-                                            </div>
-                                            <span className="text-white font-display font-bold text-xs md:text-sm" style={{ letterSpacing: '0.18em' }}>OXO.</span>
-                                            <div className="flex items-center gap-1.5 px-3 py-[3px] rounded-full" style={{ background: 'rgba(34,197,94,0.13)', border: '1px solid rgba(34,197,94,0.28)' }}>
-                                                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-ping" />
-                                                <span className="text-green-400 font-bold tracking-widest" style={{ fontSize: '9px' }}>LIVE</span>
-                                            </div>
-                                        </div>
-                                        <div className="absolute left-5 right-5 h-px" style={{ top: '60%', background: 'rgba(255,255,255,0.04)' }} />
-                                        <div className="absolute flex items-end gap-[3px]" style={{ bottom: '28px' }}>
-                                            {BAR_HEIGHTS.map((h, i) => (
-                                                <div key={i} className="rounded-sm animate-pulse"
-                                                    style={{ width: '4px', height: `${h * 3}px`, background: i % 3 === 0 ? 'rgba(108,63,255,0.9)' : i % 3 === 1 ? 'rgba(143,103,255,0.6)' : 'rgba(180,150,255,0.35)', animationDelay: `${i * 0.13}s` }}
-                                                />
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* RIGHT coins */}
-                                <div className="flex items-center gap-4 md:gap-6"
-                                    style={{ maskImage: 'linear-gradient(to left, transparent 0%, black 20%, black 100%)', paddingLeft: '40px', marginRight: '10px' }}
-                                >
-                                    {RIGHT_COINS.map((coin, i) => (
-                                        <div key={coin.label + '_r' + i}
-                                            className="coin-float flex-shrink-0 flex flex-col items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full hover:scale-110 transition-transform duration-300 cursor-default"
-                                            style={{ animationDelay: `${(i + 4) * 0.55}s`, background: 'rgba(8,8,18,0.75)', backdropFilter: 'blur(14px)', border: '1px solid rgba(255,255,255,0.09)', boxShadow: `0 0 25px ${coin.rawGlow}, inset 0 1px 0 rgba(255,255,255,0.06)`, color: coin.textColor }}
-                                        >
-                                            <span className="text-lg md:text-xl font-bold leading-none">{coin.symbol}</span>
-                                            <span className="text-[9px] font-semibold mt-0.5" style={{ opacity: 0.55 }}>{coin.label}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+                            <img src="/images/hero/checkout_ui.png" alt="Checkout UI Demo" className="relative z-10 w-full max-w-[1000px] h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform -translate-y-4" />
 
                             {/* Dissolve to next section */}
                             <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-20"
