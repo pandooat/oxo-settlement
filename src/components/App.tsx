@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { dict, type Lang } from '../lib/dict';
 import {
     ShieldIcon, LockIcon, ScanIcon, ZKProofIcon, ChainIcon, DashboardIcon,
-    CloseIcon, GoogleIcon, ArrowUpRight,
+    CloseIcon, GoogleIcon, ArrowUpRight, SwapIcon, WalletIcon, CheckIcon, FingerprintIcon,
 } from './Icons';
 import { SettlementForm } from './SettlementForm';
 
@@ -37,6 +37,198 @@ const BAR_HEIGHTS = [3, 5, 4, 8, 5, 7, 9, 6, 4, 8, 6, 10];
 
 // Flow step icons
 const FLOW_ICONS = ['📥', '🔍', '⚡', '💰', '🧾'];
+
+// --- Helper Icons for Cards ---
+const CopyIcon = ({ className }: { className?: string }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+);
+const QrIcon = ({ className }: { className?: string }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+);
+const RefreshIcon = ({ className }: { className?: string }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+);
+const ShieldCheckIcon = ({ className }: { className?: string }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
+);
+
+// --- HeroCards Component ---
+const CardStepper = ({ currentStep }: { currentStep: number }) => {
+    return (
+        <div className="px-5 pt-6 pb-5 relative">
+            <div className="absolute top-[36px] left-[15%] right-[15%] h-[2px] bg-gray-100 z-0"></div>
+            {currentStep > 1 && <div className="absolute top-[36px] left-[15%] w-[35%] h-[2px] bg-[#2A6FF6] z-0"></div>}
+            {currentStep > 2 && <div className="absolute top-[36px] left-[50%] w-[35%] h-[2px] bg-[#2A6FF6] z-0"></div>}
+
+            <div className="relative z-10 flex justify-between">
+                {/* Step 1 */}
+                <div className="flex flex-col items-center gap-2">
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-white ${currentStep >= 1 ? 'bg-[#2A6FF6]' : 'bg-gray-200'}`}>
+                        {currentStep > 1 ? <CheckIcon className="w-3.5 h-3.5" /> : (currentStep === 1 ? <div className="w-2.5 h-2.5 bg-white rounded-full"></div> : null)}
+                    </div>
+                    <div className="text-center">
+                        <div className="text-[11px] font-bold text-[#0A0A0A]">DEPOSIT</div>
+                        <div className="text-[9px] font-medium text-gray-400 mt-0.5">{currentStep === 1 ? 'Awaiting Funds' : 'Funds Detected'}</div>
+                    </div>
+                </div>
+                {/* Step 2 */}
+                <div className="flex flex-col items-center gap-2">
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-white ${currentStep >= 2 ? 'bg-[#2A6FF6]' : 'bg-white border-2 border-gray-100'}`}>
+                        {currentStep > 2 ? <CheckIcon className="w-3.5 h-3.5" /> : (currentStep === 2 ? <div className="w-2.5 h-2.5 bg-white rounded-full"></div> : <div className="w-1.5 h-1.5 bg-gray-200 rounded-full"></div>)}
+                    </div>
+                    <div className="text-center">
+                        <div className="text-[11px] font-bold text-[#0A0A0A] opacity-70">SWAP</div>
+                        <div className="text-[9px] font-medium text-gray-400 mt-0.5">On-Chain Route</div>
+                    </div>
+                </div>
+                {/* Step 3 */}
+                <div className="flex flex-col items-center gap-2">
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-white ${currentStep >= 3 ? 'bg-[#2A6FF6]' : 'bg-white border-2 border-gray-100'}`}>
+                        {currentStep > 3 ? <CheckIcon className="w-3.5 h-3.5" /> : (currentStep === 3 ? <div className="w-2.5 h-2.5 bg-white rounded-full"></div> : <div className="w-1.5 h-1.5 bg-gray-200 rounded-full"></div>)}
+                    </div>
+                    <div className="text-center">
+                        <div className="text-[11px] font-bold text-[#0A0A0A] opacity-70">SETTLEMENT</div>
+                        <div className="text-[9px] font-medium text-gray-400 mt-0.5">To Wallet</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+const HeroCards = () => {
+    return (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-4 xl:gap-6 px-2 w-full max-w-5xl mx-auto">
+            {/* Card 1: Deposit Awaiting */}
+            <div className="bg-white rounded-2xl w-full flex flex-col shadow-2xl relative overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                <CardStepper currentStep={1} />
+                <div className="px-5 pb-5 flex-1 flex flex-col">
+                    <div className="bg-[#F8F9FA] rounded-xl p-4 mb-4 border border-gray-100/60">
+                        <div className="flex justify-between text-[8px] sm:text-[9px] font-bold text-gray-400 tracking-widest mb-1.5 uppercase">
+                            <span>Amount to show</span>
+                            <span>Deposit Amount</span>
+                        </div>
+                        <div className="flex justify-between text-sm sm:text-base font-bold text-[#0A0A0A] mb-4">
+                            <span>USD 8000</span>
+                            <span>1 BTC</span>
+                        </div>
+                        <div className="flex justify-between text-[8px] sm:text-[9px] font-bold text-gray-400 tracking-widest mb-1.5 uppercase">
+                            <span>Amount to receive</span>
+                            <span>Expiry Time</span>
+                        </div>
+                        <div className="flex justify-between text-sm sm:text-base font-bold mb-1">
+                            <span className="text-[#2A6FF6]">~8,240 USDC</span>
+                            <span className="text-[#F56C00]">14:59</span>
+                        </div>
+                    </div>
+
+                    <div className="px-1 mb-4">
+                        <div className="relative flex justify-center items-center mb-3 mt-2">
+                            <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-100/80"></div></div>
+                            <span className="bg-white px-3 text-[8px] sm:text-[9px] font-bold text-gray-300 tracking-widest uppercase z-10">Checkout Address</span>
+                        </div>
+                        <div className="flex justify-between items-center bg-white rounded-lg border border-gray-200 p-2.5 shadow-sm">
+                            <span className="text-[10px] sm:text-[11px] font-mono font-medium text-gray-500">0x742d35Cc6634...8f44e</span>
+                            <div className="flex gap-2">
+                                <button className="text-gray-400 hover:text-[#2A6FF6] transition-colors"><CopyIcon className="w-3.5 h-3.5" /></button>
+                                <button className="text-gray-400 flex items-center justify-center p-0.5 bg-gray-100 rounded hover:bg-gray-200 transition-colors"><QrIcon className="w-3.5 h-3.5" /></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-auto bg-[#FFF7ED] text-[#F56C00] text-[9px] sm:text-[10px] font-bold py-2.5 rounded-lg flex items-center justify-center gap-2 border border-[#FFEDD5]">
+                        <RefreshIcon className="w-3 h-3 animate-spin" /> Monitoring for incoming transaction...
+                    </div>
+                </div>
+                <div className="px-5 py-4 border-t border-gray-50 flex justify-between items-center bg-white">
+                    <div className="flex items-center gap-1.5 text-[#2A6FF6] text-[8px] font-bold uppercase tracking-widest">
+                        <ShieldCheckIcon className="w-3 h-3" /> Non-Custodial Settlement
+                    </div>
+                    <div className="flex items-center gap-1 text-gray-400 text-[8px] font-bold uppercase tracking-widest hover:text-gray-600 transition-colors cursor-pointer">
+                        Explorer <ArrowUpRight className="w-2.5 h-2.5" />
+                    </div>
+                </div>
+            </div>
+
+            {/* Card 2: Swap Executing */}
+            <div className="bg-white rounded-2xl w-full flex flex-col shadow-2xl relative overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                <CardStepper currentStep={2} />
+                <div className="px-5 pb-5 flex-1 flex flex-col">
+                    <div className="bg-white rounded-xl p-4 mb-4 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+                        <div className="flex justify-between items-end mb-6">
+                            <div>
+                                <div className="text-[8px] sm:text-[9px] font-bold text-gray-400 tracking-widest mb-1.5 uppercase">Incoming Deposit</div>
+                                <div className="text-sm sm:text-base font-bold text-[#0A0A0A]">1 BTC</div>
+                            </div>
+                            <div className="w-6 h-6 rounded-full border border-gray-100 flex items-center justify-center text-gray-300 mb-1.5 bg-gray-50">
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                            </div>
+                            <div className="text-right">
+                                <div className="text-[8px] sm:text-[9px] font-bold text-gray-400 tracking-widest mb-1.5 uppercase">Settling In</div>
+                                <div className="text-sm sm:text-base font-bold text-[#2A6FF6]">8,240 USDC</div>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-3 bg-[#F8FAFC] p-3 rounded-lg border border-gray-100/80">
+                            <div className="w-8 h-8 flex-shrink-0 rounded-full bg-[#EFF6FF] flex items-center justify-center text-[#2A6FF6]">
+                                <RefreshIcon className="w-4 h-4 animate-spin" />
+                            </div>
+                            <div>
+                                <div className="text-[11px] sm:text-xs font-bold text-[#0A0A0A]">Executing Swap Route</div>
+                                <div className="text-[9px] sm:text-[10px] text-gray-400 font-medium">Finding best on-chain liquidity...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex gap-3 mt-auto mb-2">
+                        <div className="flex-1 border border-gray-100 rounded-lg p-3">
+                            <div className="text-[8px] font-bold text-gray-400 tracking-widest mb-1 mt-1 uppercase">Network</div>
+                            <div className="text-xs font-bold text-[#0A0A0A] flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-[#2A6FF6]"></span> Ethereum</div>
+                        </div>
+                        <div className="flex-1 border border-gray-100 rounded-lg p-3">
+                            <div className="text-[8px] font-bold text-gray-400 tracking-widest mb-1 mt-1 uppercase">Estimated Gas</div>
+                            <div className="text-xs font-bold text-[#0A0A0A]">0.002 ETH</div>
+                        </div>
+                    </div>
+                </div>
+                <div className="px-5 py-4 border-t border-gray-50 flex justify-between items-center bg-white mt-auto">
+                    <div className="flex items-center gap-1.5 text-[#2A6FF6] text-[8px] font-bold uppercase tracking-widest opacity-30">
+                        <ShieldCheckIcon className="w-3 h-3" /> Non-Custodial Settlement
+                    </div>
+                    <div className="flex items-center gap-1 text-gray-400 text-[8px] font-bold uppercase tracking-widest opacity-30">
+                        Explorer <ArrowUpRight className="w-2.5 h-2.5" />
+                    </div>
+                </div>
+            </div>
+
+            {/* Card 3: Settling Funds */}
+            <div className="bg-white rounded-2xl w-full flex flex-col shadow-2xl relative overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                <CardStepper currentStep={3} />
+                <div className="px-5 pb-5 flex-1 flex flex-col">
+                    <div className="bg-[#F8F9FA] border border-gray-100/80 rounded-xl p-6 sm:p-8 flex-1 flex flex-col items-center justify-center text-center">
+                        <div className="w-12 h-12 rounded-full bg-[#EFF6FF] flex items-center justify-center text-[#2A6FF6] mb-5 shadow-[inset_0_2px_4px_rgba(42,111,246,0.1)]">
+                            <WalletIcon className="w-6 h-6" />
+                        </div>
+                        <div className="text-sm sm:text-base font-bold text-[#0A0A0A] mb-2 tracking-tight">Settling Funds</div>
+                        <div className="text-[10px] sm:text-[11px] text-gray-500 font-medium mb-6 px-4">Transferring 8,240 USDC to &lt;wallet name&gt;</div>
+
+                        <div className="w-full bg-white border border-gray-200 rounded-lg py-3.5 px-4 text-[9px] sm:text-[10px] font-mono font-bold text-gray-400 tracking-widest text-center shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+                            Destination: 0xa9b...Fa2a1
+                        </div>
+                    </div>
+                </div>
+                <div className="px-5 py-4 border-t border-gray-50 flex justify-between items-center bg-white mt-auto">
+                    <div className="flex items-center gap-1.5 text-[#2A6FF6] text-[8px] font-bold uppercase tracking-widest opacity-30">
+                        <ShieldCheckIcon className="w-3 h-3" /> Non-Custodial Settlement
+                    </div>
+                    <div className="flex items-center gap-1 text-gray-400 text-[8px] font-bold uppercase tracking-widest opacity-30">
+                        Explorer <ArrowUpRight className="w-2.5 h-2.5" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'contact' }) {
     const [lang, setLang] = useState<Lang>('en');
@@ -103,9 +295,9 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                         <span className="font-display font-bold text-[28px] tracking-wide text-white">OXO</span>
                     </a>
                     <div className="hidden md:flex flex-1 justify-center gap-10 text-[15px] font-medium text-gray-300">
-                        <a href="/" className={`hover:text-white transition-colors ${page === 'home' ? 'text-white' : ''}`}>{t.nav_home}</a>
-                        <a href="/features#compliance" className={`hover:text-white transition-colors ${page === 'features' ? 'text-white' : ''}`}>{t.nav_compliance}</a>
-                        <a href="/contact" className={`hover:text-white transition-colors ${page === 'contact' ? 'text-white' : ''}`}>{t.nav_contact}</a>
+                        <a href="/" className={`hover: text - white transition - colors ${page === 'home' ? 'text-white' : ''} `}>{t.nav_home}</a>
+                        <a href="/features#compliance" className={`hover: text - white transition - colors ${page === 'features' ? 'text-white' : ''} `}>{t.nav_compliance}</a>
+                        <a href="/contact" className={`hover: text - white transition - colors ${page === 'contact' ? 'text-white' : ''} `}>{t.nav_contact}</a>
                     </div>
                     <div className="flex items-center">
                         <button onClick={() => setIsLoginOpen(true)} className="text-sm font-semibold text-white bg-transparent hover:bg-white/5 border border-white/30 px-7 py-2 rounded-full transition-all">{t.nav_login}</button>
@@ -142,13 +334,49 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                         </div>
 
                         {/* ── HERO VISUAL ── */}
-                        <div className="relative w-full mt-[4.5rem] reveal active select-none flex justify-center px-4" style={{ minHeight: '380px' }}>
-                            {/* Atmosphere gradient behind image */}
-                            <div className="absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full pointer-events-none"
+                        <div className="relative w-full mt-16 md:mt-24 reveal active select-none flex flex-col items-center px-4" style={{ minHeight: '380px' }}>
+                            {/* Atmosphere gradient behind cards */}
+                            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full pointer-events-none"
                                 style={{ background: 'radial-gradient(ellipse at center, rgba(108,63,255,0.15) 0%, transparent 70%)', filter: 'blur(50px)' }}
                             />
 
-                            <img src="/images/hero/checkout_ui.png" alt="Checkout UI Demo" className="relative z-10 w-full max-w-[1000px] h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform -translate-y-4" />
+                            {/* THE 3 CARDS */}
+                            <div className="relative z-10 w-full max-w-[1100px]">
+                                <HeroCards />
+                            </div>
+
+                            {/* SUPPORTED NETWORK ROW */}
+                            <div className="mt-16 sm:mt-20 mb-10 flex flex-col md:flex-row items-center gap-6 md:gap-8 opacity-80 hover:opacity-100 transition-all z-10 relative">
+                                <span className="text-[11px] sm:text-xs font-semibold text-gray-400 uppercase tracking-widest mr-2">Supported Network</span>
+                                <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+                                    {/* Bitcoin */}
+                                    <div className="w-10 h-10 rounded-xl bg-[#1A1822] border border-white/5 flex items-center justify-center">
+                                        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="#F7931A" /><path d="M22.84 14.18c.35-2.31-1.35-3.55-3.64-4.32l.74-2.98h0l-1.81-.45h0l-.73 2.92c-.47-.12-.96-.23-1.45-.34l.74-2.96h0l-1.8-.45h0l-.73 2.93a40.09 40.09 0 0 0-1.15-.27L11.4 8l-.34 1.34s.92.21.9.23c.5.12.59.46.58.72l-.58 2.34h0l-.58 2.33c-.05.13-.19.33-.53.24.01.02-.9-.23-.9-.23l-.62 1.45 1.7.42c.45.11.9.23 1.35.33l-.75 3h0l1.81.45h0l.74-2.97c.5.13 1 .25 1.48.36l-.75 3h0l1.81.45h0l.76-3.03c3.1.59 5.43.35 6.42-2.45.8-2.24-.04-3.54-1.63-4.38 1.15-.27 2.02-1.02 2.27-2.38l.02-.01Zm-3.57 5.09c-.58 2.34-4.5.8-5.78.48l1.03-4.13c1.28.32 5.37.95 4.75 3.65Zm.53-6.53c-.53 2.14-3.8.78-4.85.52l.93-3.75c1.06.26 4.49.77 3.92 3.23Z" fill="#fff" /></svg>
+                                    </div>
+                                    {/* Ethereum */}
+                                    <div className="w-10 h-10 rounded-xl bg-[#1A1822] border border-white/5 flex items-center justify-center">
+                                        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="#627EEA" /><path d="M15.82 4l-7.39 12.23 7.39 4.36Z" fill="#C0CBF6" /><path d="M15.82 4v16.59l7.39-4.36Z" fill="#fff" /><path d="M15.82 22l-7.39-4.31 7.39 10.31Z" fill="#C0CBF6" /><path d="M15.82 28V22l7.39-4.31Z" fill="#8197DF" /></svg>
+                                    </div>
+                                    {/* Solana */}
+                                    <div className="w-10 h-10 rounded-xl bg-[#1A1822] border border-white/5 flex items-center justify-center">
+                                        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="#000" /><path d="M8 12.5h11.83c.31 0 .61-.13.82-.36l2.12-2.29a.44.44 0 0 0-.32-.75H10.63c-.3 0-.6.13-.8.36L7.7 11.75a.44.44 0 0 0 .31.75Zm16 2.6H12.16c-.3 0-.6.13-.8.36l-2.12 2.3a.44.44 0 0 0 .32.74h12.16c.3 0 .6-.13.82-.36l2.12-2.3a.44.44 0 0 0-.32-.74Zm0 6.1H12.16c-.3 0-.6.13-.8.36l-2.12 2.3a.44.44 0 0 0 .32.74h12.16c.3 0 .6-.13.82-.36l2.12-2.3a.44.44 0 0 0-.32-.74Z" fill="url(#sol_grad)" /><defs><linearGradient id="sol_grad" x1="5%" y1="0%" x2="95%" y2="100%"><stop stopColor="#00FFA3" offset="0%" /><stop stopColor="#DC1FFF" offset="100%" /></linearGradient></defs></svg>
+                                    </div>
+                                    {/* Base */}
+                                    <div className="w-10 h-10 rounded-xl bg-[#1A1822] border border-white/5 flex items-center justify-center relative overflow-hidden">
+                                        <div className="absolute inset-0 bg-[#0052FF]" />
+                                        <div className="absolute w-8 h-8 rounded-full bg-white opacity-40 -top-2 -right-2 filter blur-md" />
+                                        <div className="absolute w-6 h-6 rounded-full bg-white opacity-90 top-1.5 left-1.5" style={{ boxShadow: 'inset -2px -2px 5px rgba(0,0,0,0.3)' }} />
+                                    </div>
+                                    {/* Polygon */}
+                                    <div className="w-10 h-10 rounded-xl bg-[#1A1822] border border-white/5 flex items-center justify-center">
+                                        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.09 18.25V12.9a1.9 1.9 0 0 0-.96-1.66l-4.52-2.61a1.94 1.94 0 0 0-1.93 0L10.16 11.19c-1 .59-1.95 1.13-1.93 2.27v4.61a1.93 1.93 0 0 0 .96 1.66l4.52 2.61c.6.35 1.33.35 1.93 0l4.52-2.61c.6-.34.96-.93.96-1.62-.03.14-.03-.22-.03.14Zm-4.83 1.37-3.23-1.87v-3.72l3.23-1.86 3.22 1.86v3.74L17.26 19.62Z" fill="#8247E5" /><path d="M12.91 23.36V18a2.12 2.12 0 0 0 1-1.82v-3.76L17 10.64a1.05 1.05 0 0 1 1 0l3.05 1.76v3.31l1.82 1.04v-4.9a1.88 1.88 0 0 0-.94-1.6l-4.23-2.44a1.88 1.88 0 0 0-1.86 0l-4.24 2.45a1.88 1.88 0 0 0-.93 1.6V16.6l-2.01-1.16v-3.5L10.51 10.9v-2.1L8.2 9.92a1.88 1.88 0 0 0-.94 1.62v4.9a1.86 1.86 0 0 0 .94 1.6zM22.8 20l1.88-1.09a1.88 1.88 0 0 0 .93-1.63v-4.9a1.81 1.81 0 0 0-.94-1.57v2.1l-1.87 1.07v3.52l1.55.9-.6.34L20.69 20.6A1.06 1.06 0 0 1 19.64 20.6l-3.04-1.76v-3.32l-1.82-1.04v4.91c0 .66.35 1.28.94 1.62l4.23 2.44a1.9 1.9 0 0 0 1.85 0" fill="#8247E5" /></svg>
+                                    </div>
+                                    {/* Binance */}
+                                    <div className="w-10 h-10 rounded-xl bg-[#1A1822] border border-white/5 flex items-center justify-center">
+                                        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.95 14L16 9.95 20.05 14l3.19-3.2L16 3.56l-7.23 7.24L11.95 14Zm4.05 8.04L11.95 18 8.76 21.2 16 28.44l7.24-7.24L20.05 18 16 22.04Zm-6.09-8.04l-3.2 3.2 3.2 3.2L13.15 18 9.96 14Zm12.18 0l-3.19 3.2 3.19 3.2 3.2-3.2-3.2-3.2Zm-8.13 4.04-2.03-2.02 2.03-2.02 2.02 2.02-2.02 2.02Z" fill="#F3BA2F" /></svg>
+                                    </div>
+                                </div>
+                            </div>
 
                             {/* Dissolve to next section */}
                             <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-20"
@@ -163,10 +391,10 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                             <p className="text-sm font-semibold text-gray-400 uppercase tracking-widest">Supported Assets</p>
                             <div className="flex items-center gap-10">
                                 {[
-                                    { sym: '₿', label: 'BITCOIN', glow: '#fb923c' },
-                                    { sym: 'Ξ', label: 'ETH', glow: '#60a5fa' },
-                                    { sym: '₮', label: 'USDT', glow: '#4ade80' },
-                                    { sym: 'IX', label: 'IDRX', glow: '#a78bfa' },
+                                    { sym: 'BNB', label: 'BINANCE', glow: '#F3BA2F' },
+                                    { sym: 'TRX', label: 'TRON', glow: '#FF0013' },
+                                    { sym: 'TON', label: 'TONCOIN', glow: '#0098EA' },
+                                    { sym: 'ARB', label: 'ARBITRUM', glow: '#28A0F0' },
                                 ].map(({ sym, label, glow }) => (
                                     <div key={label} className="flex items-center gap-2.5 group/a">
                                         <span className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all"
@@ -190,7 +418,7 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                             <div className="space-y-6 relative">
                                 <div className="absolute left-[39px] top-10 bottom-10 w-px bg-gradient-to-b from-oxo-purple via-oxo-lightpurple to-transparent z-0 hidden md:block" />
                                 {flowSteps.map((step, i) => (
-                                    <div key={i} className="glass-panel p-6 md:p-8 rounded-3xl relative z-10 reveal group border-white/5 hover:border-oxo-purple/30 transition-colors" style={{ transitionDelay: `${i * 80}ms` }}>
+                                    <div key={i} className="glass-panel p-6 md:p-8 rounded-3xl relative z-10 reveal group border-white/5 hover:border-oxo-purple/30 transition-colors" style={{ transitionDelay: `${i * 80} ms` }}>
                                         <div className="bento-glow" />
                                         <div className="flex flex-col md:flex-row items-start gap-6">
                                             <div className="flex-shrink-0 w-20 h-20 rounded-2xl bg-[#05050A] border border-white/10 flex flex-col items-center justify-center gap-1 group-hover:border-oxo-purple transition-colors relative overflow-hidden">
@@ -260,7 +488,7 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                                 {features.map((f, i) => (
-                                    <div key={i} className="glass-panel p-7 rounded-2xl border-white/5 group hover:border-oxo-purple/40 transition-colors reveal" style={{ transitionDelay: `${i * 60}ms` }}>
+                                    <div key={i} className="glass-panel p-7 rounded-2xl border-white/5 group hover:border-oxo-purple/40 transition-colors reveal" style={{ transitionDelay: `${i * 60} ms` }}>
                                         <div className="bento-glow" />
                                         <div className="w-11 h-11 mb-5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-oxo-lightpurple group-hover:bg-oxo-purple/20 group-hover:border-oxo-purple/60 group-hover:text-white transition-all duration-200 group-hover:scale-110">{f.icon}</div>
                                         <h4 className="text-base font-display font-bold text-white mb-2">{f.title}</h4>
