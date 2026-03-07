@@ -128,7 +128,7 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                             <h1 className="text-5xl md:text-6xl lg:text-[76px] font-display font-bold leading-[1.15] tracking-tight whitespace-pre-line text-white">
                                 {t.hero_title}
                             </h1>
-                            <p className="text-[17px] md:text-lg text-gray-400 max-w-2xl mx-auto font-medium leading-relaxed">
+                            <p className="text-[17px] md:text-lg text-gray-400 max-w-2xl mx-auto font-medium leading-relaxed whitespace-pre-line">
                                 {t.hero_sub}
                             </p>
                             <div className="pt-6 flex flex-col sm:flex-row gap-4 justify-center">
