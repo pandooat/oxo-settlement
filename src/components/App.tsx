@@ -360,17 +360,17 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                                 {/* Bitcoin */}
                                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-[12px] bg-[#0A0A0E] border border-white/5 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.5)] group hover:border-[#F7931A]/40 transition-all duration-300 hover:-translate-y-0.5 relative overflow-hidden">
                                     <div className="absolute inset-0 bg-[#F7931A]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg" alt="Bitcoin" className="w-5 h-5 sm:w-6 sm:h-6 brightness-[1.2] relative z-10 drop-shadow-[0_0_8px_rgba(247,147,26,0.3)]" />
+                                    <img src="https://cdn.crypto-logo.com/logos/bitcoin-btc/64x64/transparent.webp" alt="Bitcoin" className="w-5 h-5 sm:w-6 sm:h-6 brightness-[1.2] relative z-10 drop-shadow-[0_0_8px_rgba(247,147,26,0.3)]" />
                                 </div>
                                 {/* Ethereum */}
                                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-[12px] bg-[#0A0A0E] border border-white/5 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.5)] group hover:border-[#627EEA]/40 transition-all duration-300 hover:-translate-y-0.5 relative overflow-hidden">
                                     <div className="absolute inset-0 bg-[#627EEA]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    <img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg" alt="Ethereum" className="w-5 h-5 sm:w-6 sm:h-6 brightness-[1.2] relative z-10 drop-shadow-[0_0_8px_rgba(98,126,234,0.3)]" />
+                                    <img src="https://cdn.crypto-logo.com/logos/ethereum-eth/64x64/transparent.webp" alt="Ethereum" className="w-5 h-5 sm:w-6 sm:h-6 brightness-[1.2] relative z-10 drop-shadow-[0_0_8px_rgba(98,126,234,0.3)]" />
                                 </div>
                                 {/* Solana */}
                                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-[12px] bg-[#0A0A0E] border border-white/5 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.5)] group hover:border-[#00FFA3]/40 transition-all duration-300 hover:-translate-y-0.5 relative overflow-hidden">
                                     <div className="absolute inset-0 bg-[#00FFA3]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    <img src="https://cryptologos.cc/logos/solana-sol-logo.svg" alt="Solana" className="w-5 h-5 sm:w-6 sm:h-6 brightness-[1.2] relative z-10 drop-shadow-[0_0_8px_rgba(0,255,163,0.3)]" />
+                                    <img src="https://crypto-logo.com/api/logo/solana-sol.webp?w=128&h=128" alt="Solana" className="w-5 h-5 sm:w-6 sm:h-6 brightness-[1.2] relative z-10 drop-shadow-[0_0_8px_rgba(0,255,163,0.3)]" />
                                 </div>
                                 {/* Base (active state example style) */}
                                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-[12px] bg-[#0A0A0E] border border-[#0052FF]/30 flex items-center justify-center shadow-[0_0_20px_rgba(0,82,255,0.15)] group hover:border-[#0052FF]/50 transition-all duration-300 hover:-translate-y-0.5 relative overflow-hidden">
@@ -380,12 +380,12 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                                 {/* Polygon */}
                                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-[12px] bg-[#0A0A0E] border border-white/5 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.5)] group hover:border-[#8247E5]/40 transition-all duration-300 hover:-translate-y-0.5 relative overflow-hidden">
                                     <div className="absolute inset-0 bg-[#8247E5]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    <img src="https://cryptologos.cc/logos/polygon-matic-logo.svg" alt="Polygon" className="w-5 h-5 sm:w-6 sm:h-6 brightness-[1.2] relative z-10 drop-shadow-[0_0_8px_rgba(130,71,229,0.3)]" />
+                                    <img src="https://crypto-logo.com/api/logo/polygon-matic.webp?w=128&h=128" alt="Polygon" className="w-5 h-5 sm:w-6 sm:h-6 brightness-[1.2] relative z-10 drop-shadow-[0_0_8px_rgba(130,71,229,0.3)]" />
                                 </div>
                                 {/* Binance */}
                                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-[12px] bg-[#0A0A0E] border border-white/5 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.5)] group hover:border-[#F3BA2F]/40 transition-all duration-300 hover:-translate-y-0.5 relative overflow-hidden">
                                     <div className="absolute inset-0 bg-[#F3BA2F]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    <img src="https://cryptologos.cc/logos/bnb-bnb-logo.svg" alt="Binance" className="w-5 h-5 sm:w-6 sm:h-6 brightness-[1.3] relative z-10 drop-shadow-[0_0_8px_rgba(243,186,47,0.3)]" />
+                                    <img src="https://cdn.crypto-logo.com/logos/binance-coin-bnb/64x64/transparent.webp" alt="Binance" className="w-5 h-5 sm:w-6 sm:h-6 brightness-[1.3] relative z-10 drop-shadow-[0_0_8px_rgba(243,186,47,0.3)]" />
                                 </div>
                             </div>
                         </div>
