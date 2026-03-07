@@ -580,7 +580,7 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                                     <h4 className="font-bold text-lg mb-3 text-white flex items-start gap-3">
                                         <span className="text-oxo-purple flex-shrink-0">Q.</span>{q}
                                     </h4>
-                                    <p className="text-gray-400 font-medium leading-relaxed pl-7">{a}</p>
+                                    <p className="text-gray-400 font-medium leading-relaxed pl-7 whitespace-pre-line">{a}</p>
                                 </div>
                             ))}
                         </div>

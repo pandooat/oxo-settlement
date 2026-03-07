@@ -132,10 +132,10 @@ export const dict = {
         faq_5_q: "Is there a volume limit?",
         faq_5_a: "OXO supports both small and large transactions. The system automatically routes transactions through available liquidity to process higher volumes when needed.",
         faq_6_q: "Who is OXO for?",
-        faq_6_a: "OXO is built for businesses that want to accept crypto payments but receive stable settlement. Typical users include:\n\n• Merchants\n• Digital platforms\n• Fintech companies\n• Web3 services",
+        faq_6_a: "OXO is built for businesses that want to accept crypto payments but receive stable settlement.\nTypical users include:\n • Merchants\n • Digital platforms\n • Fintech companies\n • Web3 services",
 
         // Footer
-        footer_tagline: "Clean crypto settlement. Zero compliance headache.",
+        footer_tagline: "Crypto checkout with automatic USDT settlement.",
         footer_contact: "Talk to us: developer@oxo.so · oxo.so",
     },
 
@@ -272,10 +272,10 @@ export const dict = {
         faq_5_q: "Apakah ada batas volume?",
         faq_5_a: "OXO mendukung transaksi kecil maupun besar. Sistem secara otomatis merutekan transaksi melalui likuiditas yang tersedia untuk memproses volume yang lebih tinggi saat dibutuhkan.",
         faq_6_q: "OXO untuk siapa?",
-        faq_6_a: "OXO dibangun untuk bisnis yang ingin menerima pembayaran kripto tetapi menerima settlement yang stabil. Pengguna tipikal meliputi:\n\n• Merchant\n• Platform digital\n• Perusahaan fintech\n• Layanan Web3",
+        faq_6_a: "OXO dibangun untuk bisnis yang ingin menerima pembayaran kripto tetapi menerima settlement yang stabil.\nPengguna tipikal meliputi:\n • Merchant\n • Platform digital\n • Perusahaan fintech\n • Layanan Web3",
 
         // Footer
-        footer_tagline: "Settlement kripto yang bersih. Tanpa pusing soal regulasi.",
+        footer_tagline: "Checkout kripto dengan settlement USDT otomatis.",
         footer_contact: "Hubungi kami: developer@oxo.so · oxo.so",
     },
 } as const;
