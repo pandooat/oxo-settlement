@@ -375,7 +375,7 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                                 {/* Base (active state example style) */}
                                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-[12px] bg-[#0A0A0E] border border-[#0052FF]/30 flex items-center justify-center shadow-[0_0_20px_rgba(0,82,255,0.15)] group hover:border-[#0052FF]/50 transition-all duration-300 hover:-translate-y-0.5 relative overflow-hidden">
                                     <div className="absolute inset-0 bg-[#0052FF]/20" />
-                                    <img src="https://altcoinsbox.com/wp-content/uploads/2023/02/base-logo-in-blue.webp" alt="Base" className="w-5 h-5 sm:w-6 sm:h-6 relative z-10 drop-shadow-[0_0_12px_rgba(0,82,255,0.6)] brightness-[1.5]" />
+                                    <img src="https://altcoinsbox.com/wp-content/uploads/2023/02/base-logo-in-blue-300x300.webp" alt="Base" className="w-5 h-5 sm:w-6 sm:h-6 relative z-10 drop-shadow-[0_0_12px_rgba(0,82,255,0.6)] brightness-[1.5]" />
                                 </div>
                                 {/* Polygon */}
                                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-[12px] bg-[#0A0A0E] border border-white/5 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.5)] group hover:border-[#8247E5]/40 transition-all duration-300 hover:-translate-y-0.5 relative overflow-hidden">
