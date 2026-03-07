@@ -99,19 +99,16 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
             {/* ── NAVBAR ── */}
             <nav className="fixed w-full z-40 bg-[#030308]/60 backdrop-blur-xl border-b border-white/5">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                    <a href="/" className="flex items-center gap-3 cursor-pointer group">
-                        <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center font-bold text-black group-hover:bg-gray-200 transition-colors">O</div>
-                        <span className="font-display font-bold text-xl tracking-wide">OXO.</span>
+                    <a href="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
+                        <span className="font-display font-bold text-[28px] tracking-wide text-white">OXO</span>
                     </a>
-                    <div className="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+                    <div className="hidden md:flex flex-1 justify-center gap-10 text-[15px] font-medium text-gray-300">
                         <a href="/" className={`hover:text-white transition-colors ${page === 'home' ? 'text-white' : ''}`}>{t.nav_home}</a>
                         <a href="/features#compliance" className={`hover:text-white transition-colors ${page === 'features' ? 'text-white' : ''}`}>{t.nav_compliance}</a>
-                        <a href="/contact#about" className={`hover:text-white transition-colors ${page === 'contact' ? 'text-white' : ''}`}>{t.nav_about}</a>
                         <a href="/contact" className={`hover:text-white transition-colors ${page === 'contact' ? 'text-white' : ''}`}>{t.nav_contact}</a>
                     </div>
-                    <div className="flex items-center gap-4">
-                        <button onClick={toggleLang} className="text-xs font-semibold text-gray-400 hover:text-white transition-colors">{t.nav_lang}</button>
-                        <button onClick={() => setIsLoginOpen(true)} className="text-sm font-semibold text-white bg-white/5 hover:bg-white/10 border border-white/10 px-5 py-2 rounded-full transition-all">{t.nav_login}</button>
+                    <div className="flex items-center">
+                        <button onClick={() => setIsLoginOpen(true)} className="text-sm font-semibold text-white bg-transparent hover:bg-white/5 border border-white/30 px-7 py-2 rounded-full transition-all">{t.nav_login}</button>
                     </div>
                 </div>
             </nav>
@@ -120,25 +117,25 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
             {page === 'home' && (
                 <>
                     {/* ── HERO SECTION ── */}
-                    <section className="relative z-10 pt-36 pb-0 flex flex-col items-center text-center overflow-hidden">
+                    <section className="relative z-10 pt-40 pb-0 flex flex-col items-center text-center overflow-hidden">
 
                         {/* Hero copy */}
                         <div className="px-6 max-w-5xl mx-auto reveal active space-y-6 relative z-10">
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-gray-300 text-xs font-semibold tracking-widest uppercase">
-                                <span className="w-2 h-2 rounded-full bg-oxo-purple animate-pulse" />
+                            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 bg-[#16142A]/80 shadow-[0_4px_10px_rgba(0,0,0,0.5)] text-gray-300 text-[10px] sm:text-[11px] font-bold tracking-[0.15em] uppercase">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#8b5cf6] shadow-[0_0_8px_#8b5cf6]" />
                                 {t.hero_tag}
                             </div>
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tight whitespace-pre-line">
+                            <h1 className="text-5xl md:text-6xl lg:text-[76px] font-display font-bold leading-[1.15] tracking-tight whitespace-pre-line text-white">
                                 {t.hero_title}
                             </h1>
-                            <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-medium leading-relaxed">
+                            <p className="text-[17px] md:text-lg text-gray-400 max-w-2xl mx-auto font-medium leading-relaxed">
                                 {t.hero_sub}
                             </p>
-                            <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-                                <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-oxo-purple hover:bg-[#5a33db] font-semibold text-white transition-all shadow-[0_0_30px_rgba(108,63,255,0.4)] hover:shadow-[0_0_50px_rgba(108,63,255,0.65)] hover:-translate-y-0.5">
+                            <div className="pt-6 flex flex-col sm:flex-row gap-4 justify-center">
+                                <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#7B46FF] hover:bg-[#6c3aed] font-semibold text-white transition-all shadow-[0_0_30px_rgba(123,70,255,0.4)] hover:shadow-[0_0_50px_rgba(123,70,255,0.65)] hover:-translate-y-0.5 text-sm">
                                     {t.btn_primary}
                                 </a>
-                                <a href="#how-it-works" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 font-semibold text-white transition-all">
+                                <a href="#how-it-works" className="inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-[#1A1822] hover:bg-[#201e29] border border-white/5 hover:border-white/10 font-semibold text-white transition-all text-sm">
                                     {t.btn_secondary}
                                 </a>
                             </div>

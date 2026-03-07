@@ -23,9 +23,9 @@ export const dict = {
         signup_has_acc: "Already have an account?",
 
         // Hero
-        hero_tag: "Crypto Settlement for Business",
-        hero_title: "Accept crypto.\nGet paid in USDT.\nNo risk.",
-        hero_sub: "Your customers pay in Bitcoin. You receive clean, stable USDT — automatically. OXO handles all the messy parts in between.",
+        hero_tag: "CRYPTO CHECKOUT PAGE",
+        hero_title: "Accept crypto.\nGet settled in USDT.",
+        hero_sub: "Your customers can pay with Bitcoin and other digital assets.\nOXO routes the transaction and settles the value into USDT to your business wallet.",
         btn_primary: "Get Started →",
         btn_secondary: "See How It Works ↓",
 
@@ -169,9 +169,9 @@ export const dict = {
         signup_has_acc: "Sudah punya akun?",
 
         // Hero
-        hero_tag: "Settlement Kripto untuk Bisnis",
-        hero_title: "Terima kripto.\nDapat USDT bersih.\nTanpa risiko.",
-        hero_sub: "Pelanggan Anda bayar pakai Bitcoin. Anda terima USDT yang stabil dan bersih — otomatis. OXO yang urus semua bagian rumitnya.",
+        hero_tag: "HALAMAN CHECKOUT KRIPTO",
+        hero_title: "Terima kripto.\nSettle di USDT.",
+        hero_sub: "Pelanggan Anda dapat membayar dengan Bitcoin dan aset digital lainnya.\nOXO merutekan transaksi dan menyesuaikan nilainya menjadi USDT ke dompet bisnis Anda.",
         btn_primary: "Mulai Sekarang →",
         btn_secondary: "Lihat Cara Kerjanya ↓",
 
