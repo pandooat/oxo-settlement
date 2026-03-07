@@ -243,21 +243,11 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
     };
     const toggleLang = () => setLang(l => l === 'en' ? 'id' : 'en');
 
-    // Map flow icons using new futuristic icon components
-    const FlowIcons = [
-        <ChainIcon className="w-7 h-7" />,
-        <ScanIcon className="w-7 h-7" />,
-        <ArrowUpRight className="w-7 h-7" />,
-        <LockIcon className="w-7 h-7" />,
-        <ZKProofIcon className="w-7 h-7" />,
-    ];
-
+    // List of steps for "How It Works" section
     const flowSteps = [
         { title: t.flow_1_title, desc: t.flow_1_desc, micro: t.flow_1_micro },
         { title: t.flow_2_title, desc: t.flow_2_desc, micro: t.flow_2_micro },
         { title: t.flow_3_title, desc: t.flow_3_desc, micro: t.flow_3_micro },
-        { title: t.flow_4_title, desc: t.flow_4_desc, micro: t.flow_4_micro },
-        { title: t.flow_5_title, desc: t.flow_5_desc, micro: t.flow_5_micro },
     ];
 
     // Feature icon components — each paired with title/desc from dict
@@ -392,35 +382,51 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                     </section>
 
                     {/* ── HOW IT WORKS ── */}
-                    <section id="how-it-works" className="py-32 px-6 relative z-10 bg-[#05050A]">
+                    <section id="how-it-works" className="py-24 sm:py-32 px-6 relative z-10 bg-[#05050A]">
                         <div className="max-w-4xl mx-auto">
-                            <div className="text-center mb-20 reveal">
-                                <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-gray-300 text-xs font-semibold tracking-widest uppercase mb-6">{t.flow_tag}</div>
-                                <h2 className="text-3xl md:text-5xl font-display font-bold mb-6 tracking-tight">{t.flow_title}</h2>
-                                <p className="text-gray-400 text-lg max-w-2xl mx-auto">{t.flow_desc}</p>
+                            <div className="text-center mb-16 sm:mb-24 reveal">
+                                <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-gray-400 text-[10px] font-bold tracking-[0.2em] uppercase mb-8">
+                                    {t.flow_tag}
+                                </div>
+                                <h2 className="text-4xl md:text-5xl lg:text-7xl font-display font-bold mb-8 tracking-tight text-white">
+                                    {t.flow_title}
+                                </h2>
+                                <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+                                    {t.flow_desc}
+                                </p>
                             </div>
+
                             <div className="space-y-6 relative">
-                                <div className="absolute left-[39px] top-10 bottom-10 w-px bg-gradient-to-b from-oxo-purple via-oxo-lightpurple to-transparent z-0 hidden md:block" />
+                                {/* Connecting line */}
+                                <div className="absolute left-[39px] sm:left-[47px] top-12 bottom-12 w-[1px] bg-gradient-to-b from-oxo-purple/80 via-oxo-lightpurple/40 to-transparent z-0" />
+
                                 {flowSteps.map((step, i) => (
-                                    <div key={i} className="glass-panel p-6 md:p-8 rounded-3xl relative z-10 reveal group border-white/5 hover:border-oxo-purple/30 transition-colors" style={{ transitionDelay: `${i * 80} ms` }}>
+                                    <div key={i} className="glass-panel p-6 sm:p-10 rounded-3xl relative z-10 reveal group border-white/5 hover:border-oxo-purple/20 transition-all duration-500" style={{ transitionDelay: `${i * 100}ms` }}>
                                         <div className="bento-glow" />
-                                        <div className="flex flex-col md:flex-row items-start gap-6">
-                                            <div className="flex-shrink-0 w-20 h-20 rounded-2xl bg-[#05050A] border border-white/10 flex flex-col items-center justify-center gap-1 group-hover:border-oxo-purple transition-colors relative overflow-hidden">
-                                                <div className="absolute inset-0 bg-oxo-purple/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                                <span className="text-white/80 group-hover:text-white transition-colors">{FlowIcons[i]}</span>
-                                                <span className="text-[10px] font-bold text-gray-500 group-hover:text-oxo-lightpurple transition-colors tracking-widest">0{i + 1}</span>
+                                        <div className="flex flex-row items-start gap-6 sm:gap-10">
+                                            {/* Step Number Container */}
+                                            <div className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#08080C] border border-white/5 flex items-center justify-center group-hover:border-oxo-purple/50 transition-colors shadow-2xl">
+                                                <span className="text-3xl sm:text-4xl font-display font-bold text-white/90 group-hover:text-white transition-colors">{i + 1}</span>
                                             </div>
-                                            <div className="flex-1">
-                                                <h4 className="text-xl font-display font-bold text-white mb-2">{step.title}</h4>
-                                                <p className="text-gray-400 leading-relaxed mb-3">{step.desc}</p>
-                                                {step.micro && (
-                                                    <p className="text-sm font-semibold text-oxo-lightpurple/80 italic">"{step.micro}"</p>
-                                                )}
-                                            </div>
-                                            <div className="md:ml-auto flex-shrink-0">
-                                                <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-500 group-hover:text-oxo-purple group-hover:border-oxo-purple transition-colors">
-                                                    <ArrowUpRight className="w-4 h-4" />
+
+                                            {/* Content Area */}
+                                            <div className="flex-1 pt-2 sm:pt-4">
+                                                <div className="flex items-center justify-between mb-3">
+                                                    <h4 className="text-2xl sm:text-3xl font-display font-bold text-white group-hover:text-oxo-lightpurple transition-colors tracking-tight">
+                                                        {step.title}
+                                                    </h4>
+                                                    <div className="hidden sm:flex w-10 h-10 rounded-full border border-white/5 items-center justify-center text-gray-600 group-hover:text-oxo-purple group-hover:border-oxo-purple/40 transition-all">
+                                                        <ArrowUpRight className="w-4 h-4" />
+                                                    </div>
                                                 </div>
+                                                <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-5 max-w-2xl">
+                                                    {step.desc}
+                                                </p>
+                                                {step.micro && (
+                                                    <p className="text-sm sm:text-base font-medium text-[#7B46FF] italic opacity-80 group-hover:opacity-100 transition-opacity">
+                                                        "{step.micro}"
+                                                    </p>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
