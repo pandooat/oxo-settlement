@@ -587,23 +587,9 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                     </div>
                 )}
 
-                <div className="max-w-4xl mx-auto text-center mb-12 reveal">
+                <div className="max-w-4xl mx-auto text-center reveal">
                     <p className="text-gray-400 font-medium">{t.footer_tagline}</p>
                     <p className="text-gray-600 text-sm mt-1">{t.footer_contact}</p>
-                </div>
-
-                <div className="max-w-7xl mx-auto border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <a href="/" className="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
-                        <div className="w-6 h-6 rounded bg-white text-black flex items-center justify-center font-bold text-xs">O</div>
-                        <span className="font-display font-bold tracking-wide">OXO.</span>
-                    </a>
-                    <div className="flex flex-wrap justify-center gap-6 md:gap-8 text-sm font-medium text-gray-500">
-                        <a href="/" className="hover:text-white transition-colors">{t.nav_home}</a>
-                        <a href="/features#compliance" className="hover:text-white transition-colors">{t.nav_compliance}</a>
-                        <a href="/contact#about" className="hover:text-white transition-colors">{t.nav_about}</a>
-                        <a href="/contact" className="hover:text-white transition-colors">{t.nav_contact}</a>
-                    </div>
-                    <button onClick={() => window.scrollTo(0, 0)} className="text-xs font-bold text-white bg-oxo-purple hover:bg-[#5a33db] px-5 py-2.5 rounded-full transition-all">Back to Top</button>
                 </div>
             </footer>
 
