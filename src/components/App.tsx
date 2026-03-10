@@ -555,10 +555,12 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                     {/* ── FOUNDER SECTION ── */}
                     <section id="about" className="pb-32 px-6 relative z-10 bg-[#05050A]">
                         <div className="max-w-4xl mx-auto glass-panel p-10 md:p-12 rounded-[2.5rem] flex flex-col md:flex-row gap-10 items-center reveal border-white/5">
-                            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-oxo-purple to-[#030308] border border-white/20 flex-shrink-0 flex items-center justify-center shadow-[0_0_30px_rgba(108,63,255,0.2)]">
-                                <svg className="w-20 h-20 text-white/20" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-3.315 0-10 1.66-10 5v2h20v-2c0-3.34-6.685-5-10-5z" />
-                                </svg>
+                            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-oxo-purple to-[#030308] border border-white/20 flex-shrink-0 overflow-hidden shadow-[0_0_30px_rgba(108,63,255,0.2)]">
+                                <img
+                                    src="https://i.postimg.cc/1tRw2kZw/Reza-akhmad-gandara.webp"
+                                    alt="Reza Gandara"
+                                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                                />
                             </div>
                             <div>
                                 <h3 className="text-2xl md:text-3xl font-display font-bold mb-4 text-white">{t.found_title}</h3>
