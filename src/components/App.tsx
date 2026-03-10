@@ -557,7 +557,7 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                         <div className="max-w-4xl mx-auto glass-panel p-10 md:p-12 rounded-[2.5rem] flex flex-col md:flex-row gap-10 items-center reveal border-white/5">
                             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-oxo-purple to-[#030308] border border-white/20 flex-shrink-0 overflow-hidden shadow-[0_0_30px_rgba(108,63,255,0.2)]">
                                 <img
-                                    src="https://i.postimg.cc/1tRw2kZw/Reza-akhmad-gandara.webp"
+                                    src="https://i.postimg.cc/dkpx7Czk/Reza-akhmad-gandara-(1).webp"
                                     alt="Reza Gandara"
                                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                                 />
