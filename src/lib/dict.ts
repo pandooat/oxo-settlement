@@ -2,25 +2,10 @@ export const dict = {
     en: {
         // Nav
         nav_lang: "EN | ID",
-        nav_login: "Login",
         nav_home: "Home",
         nav_compliance: "Compliance",
         nav_about: "About",
         nav_contact: "Contact",
-
-        // Auth modal
-        login_title: "Dashboard Login",
-        login_email: "Email Address",
-        login_pass: "Password",
-        login_btn: "Sign In",
-        login_google: "Continue with Google",
-        login_forgot: "Forgot Password?",
-        login_no_acc: "Don't have an account?",
-        login_signup: "Sign up",
-        signup_title: "Create Account",
-        signup_name: "Full Name",
-        signup_btn: "Create Account",
-        signup_has_acc: "Already have an account?",
 
         // Hero
         hero_tag: "CRYPTO CHECKOUT PAGE",
@@ -142,25 +127,10 @@ export const dict = {
     id: {
         // Nav
         nav_lang: "ID | EN",
-        nav_login: "Masuk",
         nav_home: "Beranda",
         nav_compliance: "Kepatuhan",
         nav_about: "Tentang",
         nav_contact: "Kontak",
-
-        // Auth modal
-        login_title: "Masuk Dashboard",
-        login_email: "Alamat Email",
-        login_pass: "Kata Sandi",
-        login_btn: "Masuk",
-        login_google: "Lanjutkan dengan Google",
-        login_forgot: "Lupa Kata Sandi?",
-        login_no_acc: "Belum punya akun?",
-        login_signup: "Daftar",
-        signup_title: "Buat Akun",
-        signup_name: "Nama Lengkap",
-        signup_btn: "Daftar Akun",
-        signup_has_acc: "Sudah punya akun?",
 
         // Hero
         hero_tag: "HALAMAN CHECKOUT KRIPTO",

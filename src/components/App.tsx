@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { dict, type Lang } from '../lib/dict';
 import {
     ShieldIcon, LockIcon, ScanIcon, ZKProofIcon, ChainIcon, DashboardIcon,
-    CloseIcon, GoogleIcon, ArrowUpRight, SwapIcon, WalletIcon, CheckIcon, FingerprintIcon,
+    ArrowUpRight, SwapIcon, WalletIcon, CheckIcon, FingerprintIcon,
 } from './Icons';
 import { SettlementForm } from './SettlementForm';
 
@@ -232,15 +232,9 @@ const HeroCards = () => {
 
 export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'contact' }) {
     const [lang, setLang] = useState<Lang>('en');
-    const [isLoginOpen, setIsLoginOpen] = useState(false);
-    const [isLoginMode, setIsLoginMode] = useState(true);
     const t = dict[lang];
     useScrollReveal();
 
-    const handleCloseModal = () => {
-        setIsLoginOpen(false);
-        setTimeout(() => setIsLoginMode(true), 300);
-    };
     const toggleLang = () => setLang(l => l === 'en' ? 'id' : 'en');
 
     // List of steps for "How It Works" section
@@ -290,7 +284,7 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                         <a href="/contact" className={`hover: text - white transition - colors ${page === 'contact' ? 'text-white' : ''} `}>{t.nav_contact}</a>
                     </div>
                     <div className="flex items-center">
-                        <button onClick={() => setIsLoginOpen(true)} className="text-sm font-semibold text-white bg-transparent hover:bg-white/5 border border-white/30 px-7 py-2 rounded-full transition-all">{t.nav_login}</button>
+                        <button onClick={toggleLang} className="text-xs font-bold text-gray-400 hover:text-white border border-white/10 hover:border-white/20 px-3 py-1.5 rounded-lg transition-all uppercase tracking-wider">{lang === 'en' ? 'ID' : 'EN'}</button>
                     </div>
                 </div>
             </nav>
@@ -594,60 +588,6 @@ export default function App({ page = 'home' }: { page?: 'home' | 'features' | 'c
                     <p className="text-gray-600 text-sm mt-1">{t.footer_contact}</p>
                 </div>
             </footer>
-
-            {/* ── LOGIN MODAL ── */}
-            {isLoginOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center px-4 animate-fade-in-up" style={{ animationDuration: '0.3s' }}>
-                    <div className="absolute inset-0 bg-[#030308]/90 backdrop-blur-md" onClick={handleCloseModal} />
-                    <div className="relative w-full max-w-md glass-panel p-8 rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.8)] border-white/10 overflow-hidden">
-                        <div className="absolute -top-20 -right-20 w-40 h-40 bg-oxo-purple/30 rounded-full blur-3xl" />
-                        <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-oxo-purple/20 rounded-full blur-3xl" />
-                        <button onClick={handleCloseModal} className="absolute top-6 right-6 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 p-2 rounded-full z-20 transition-colors">
-                            <CloseIcon className="w-5 h-5" />
-                        </button>
-                        <div className="text-center mb-8 relative z-10">
-                            <div className="w-12 h-12 rounded-xl bg-oxo-purple mx-auto flex items-center justify-center font-bold text-white text-2xl shadow-[0_0_20px_rgba(108,63,255,0.6)] mb-4">O</div>
-                            <h3 className="text-2xl font-display font-bold text-white">{isLoginMode ? t.login_title : t.signup_title}</h3>
-                        </div>
-                        <form className="space-y-5 relative z-10" onSubmit={(e) => { e.preventDefault(); handleCloseModal(); }}>
-                            {!isLoginMode && (
-                                <div>
-                                    <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1">{t.signup_name}</label>
-                                    <input required type="text" placeholder="John Doe" className="w-full bg-[#05050A] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-oxo-purple transition-all placeholder-gray-700" />
-                                </div>
-                            )}
-                            <div>
-                                <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1">{t.login_email}</label>
-                                <input required type="email" placeholder="admin@company.com" className="w-full bg-[#05050A] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-oxo-purple transition-all placeholder-gray-700" />
-                            </div>
-                            <div>
-                                <div className="flex justify-between items-center mb-2 pl-1 pr-1">
-                                    <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider">{t.login_pass}</label>
-                                    {isLoginMode && <a href="#" className="text-xs text-oxo-lightpurple hover:text-white transition-colors">{t.login_forgot}</a>}
-                                </div>
-                                <input required type="password" placeholder="••••••••" className="w-full bg-[#05050A] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-oxo-purple transition-all placeholder-gray-700" />
-                            </div>
-                            <button type="submit" className="w-full bg-oxo-purple hover:bg-[#5a33db] text-white font-bold py-3.5 rounded-xl transition-all mt-4 shadow-[0_0_20px_rgba(108,63,255,0.3)] hover:shadow-[0_0_30px_rgba(108,63,255,0.5)]">
-                                {isLoginMode ? t.login_btn : t.signup_btn}
-                            </button>
-                        </form>
-                        <div className="mt-6 flex items-center gap-4 relative z-10">
-                            <div className="flex-1 h-px bg-white/10" /><span className="text-xs text-gray-600 font-bold uppercase">OR</span><div className="flex-1 h-px bg-white/10" />
-                        </div>
-                        <button type="button" className="w-full mt-6 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-3 relative z-10">
-                            <GoogleIcon className="w-5 h-5" /> {t.login_google}
-                        </button>
-                        <div className="mt-8 text-center relative z-10">
-                            <p className="text-sm text-gray-500">
-                                {isLoginMode ? t.login_no_acc : t.signup_has_acc}
-                                <button onClick={() => setIsLoginMode(m => !m)} className="ml-2 text-white hover:text-oxo-lightpurple font-bold transition-colors">
-                                    {isLoginMode ? t.login_signup : t.nav_login}
-                                </button>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 }
